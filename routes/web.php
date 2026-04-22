@@ -16,3 +16,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Admin Routes
+Route::prefix('admindeVinos')->name('admin.')->group(function () {
+    Route::get('/', [\App\Http\Controllers\Admin\AdminController::class, 'index'])->name('dashboard');
+    Route::resource('categorias', \App\Http\Controllers\Admin\CategoriaController::class);
+    Route::resource('marcas', \App\Http\Controllers\Admin\MarcaController::class);
+    Route::resource('variedades', \App\Http\Controllers\Admin\VariedadController::class);
+    Route::resource('productos', \App\Http\Controllers\Admin\ProductoController::class);
+});

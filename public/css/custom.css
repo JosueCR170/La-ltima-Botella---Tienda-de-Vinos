@@ -1,0 +1,216 @@
+:root {
+    /* Colors extracted from The Editorial Cellar theme */
+    --surface-variant: #e4e4cc;
+    --primary: #2a0002;
+    --secondary-container: #fed7d0;
+    --outline-variant: #dac1bf;
+    --inverse-surface: #303221;
+    --outline: #877270;
+    --surface-container-highest: #e4e4cc;
+    --surface-tint: #954742;
+    --error-container: #ffdad6;
+    --primary-container: #4a0e0e;
+    --on-primary-container: #cc726d;
+    --error: #ba1a1a;
+    --on-background: #1b1d0e;
+    --surface-dim: #dbdcc3;
+    --on-primary: #ffffff;
+    --on-error: #ffffff;
+    --on-surface: #1b1d0e;
+    --background: #fbfbe2;
+    --surface-container: #efefd7;
+    --tertiary-fixed: #ffe088;
+    --surface-container-low: #f5f5dc;
+    --on-surface-variant: #544341;
+    --primary-fixed: #ffdad7;
+    --surface-bright: #fbfbe2;
+    --surface: #fbfbe2;
+    --surface-container-lowest: #ffffff;
+    --tertiary: #735c00;
+    --secondary: #745853;
+    --surface-container-high: #eaead1;
+
+    /* Fonts */
+    --font-headline: 'Noto Serif', serif;
+    --font-body: 'Manrope', sans-serif;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--on-surface);
+    font-family: var(--font-body);
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-headline);
+    color: var(--primary);
+}
+
+/* Material Symbols Adjustments */
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    vertical-align: middle;
+}
+
+/* Basic Layout Styles */
+.admin-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.admin-sidebar {
+    width: 250px;
+    background-color: var(--surface-container-highest);
+    padding: 2rem;
+    border-right: 1px solid var(--outline-variant);
+}
+
+.admin-sidebar h2 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.admin-sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.admin-sidebar li {
+    margin-bottom: 1rem;
+}
+
+.admin-sidebar a {
+    text-decoration: none;
+    color: var(--on-surface);
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.admin-sidebar a:hover {
+    color: var(--tertiary);
+}
+
+.admin-main {
+    flex-grow: 1;
+    padding: 2rem;
+    background-color: var(--surface);
+}
+
+/* CRUD Tables */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    background-color: var(--surface-container-lowest);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.admin-table th, .admin-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--outline-variant);
+}
+
+.admin-table th {
+    background-color: var(--surface-container-low);
+    color: var(--on-surface-variant);
+    font-weight: 600;
+    font-family: var(--font-headline);
+}
+
+/* Forms */
+.admin-form {
+    background-color: var(--surface-container-lowest);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    max-width: 600px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--on-surface-variant);
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--outline-variant);
+    border-radius: 4px;
+    font-family: var(--font-body);
+    background-color: var(--surface);
+    box-sizing: border-box;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--tertiary);
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: var(--on-primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-container);
+}
+
+.btn-secondary {
+    background-color: var(--surface-container-high);
+    color: var(--on-surface);
+}
+
+.btn-secondary:hover {
+    background-color: var(--surface-variant);
+}
+
+.btn-danger {
+    background-color: var(--error);
+    color: var(--on-error);
+}
+
+.btn-danger:hover {
+    background-color: var(--error-container);
+    color: var(--error);
+}
+
+.btn-sm {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.875rem;
+}
+
+/* Alerts */
+.alert {
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+}
+
+.alert-success {
+    background-color: var(--primary-fixed);
+    color: var(--on-primary-fixed);
+}

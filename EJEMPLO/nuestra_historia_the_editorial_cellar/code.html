@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Manrope:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#e4e4cc",
+                        "primary": "#2a0002",
+                        "secondary-container": "#fed7d0",
+                        "outline-variant": "#dac1bf",
+                        "inverse-surface": "#303221",
+                        "outline": "#877270",
+                        "surface-container-highest": "#e4e4cc",
+                        "surface-tint": "#954742",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#4a0e0e",
+                        "on-tertiary-container": "#4f3e00",
+                        "on-primary-container": "#cc726d",
+                        "error": "#ba1a1a",
+                        "on-background": "#1b1d0e",
+                        "on-primary-fixed-variant": "#77302d",
+                        "surface-dim": "#dbdcc3",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-surface": "#1b1d0e",
+                        "background": "#fbfbe2",
+                        "on-tertiary": "#ffffff",
+                        "surface-container": "#efefd7",
+                        "tertiary-fixed": "#ffe088",
+                        "surface-container-low": "#f5f5dc",
+                        "on-surface-variant": "#544341",
+                        "primary-fixed-dim": "#ffb3ad",
+                        "primary-fixed": "#ffdad7",
+                        "on-secondary-fixed": "#2b1613",
+                        "surface-bright": "#fbfbe2",
+                        "secondary-fixed": "#ffdad4",
+                        "on-secondary-container": "#795c57",
+                        "surface": "#fbfbe2",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary": "#735c00",
+                        "on-primary-fixed": "#3d0506",
+                        "secondary-fixed-dim": "#e3beb8",
+                        "tertiary-fixed-dim": "#e9c349",
+                        "tertiary-container": "#cca830",
+                        "inverse-primary": "#ffb3ad",
+                        "inverse-on-surface": "#f2f2d9",
+                        "secondary": "#745853",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#5b403c",
+                        "on-tertiary-fixed": "#241a00",
+                        "surface-container-high": "#eaead1",
+                        "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-shadow {
+            box-shadow: 0 20px 40px -15px rgba(27, 29, 14, 0.06);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- TopNavBar -->
+<nav class="flex justify-between items-center px-12 py-6 w-full sticky top-0 z-50 bg-[#e4e4cc]/70 backdrop-blur-3xl">
+<div class="font-['Noto_Serif'] text-2xl font-bold italic text-[#2a0002]">The Editorial Cellar</div>
+<div class="hidden md:flex items-center space-x-12 font-['Noto_Serif'] text-lg tracking-tight">
+<a class="text-[#1b1d0e]/70 hover:text-[#2a0002] transition-colors duration-300" href="#">The Cellar</a>
+<a class="text-[#1b1d0e]/70 hover:text-[#2a0002] transition-colors duration-300" href="#">Vintages</a>
+<a class="text-[#2a0002] border-b-2 border-[#735c00] pb-1" href="#">Our Story</a>
+<a class="text-[#1b1d0e]/70 hover:text-[#2a0002] transition-colors duration-300" href="#">Contact</a>
+</div>
+<div class="flex items-center space-x-6">
+<button class="material-symbols-outlined text-[#2a0002] hover:opacity-80 transition-opacity" data-icon="shopping_bag">shopping_bag</button>
+<button class="material-symbols-outlined text-[#2a0002] hover:opacity-80 transition-opacity" data-icon="person">person</button>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative h-[921px] flex items-center overflow-hidden bg-surface-container-low">
+<div class="container mx-auto px-12 z-10 grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+<div class="md:col-span-6">
+<span class="font-label text-xs uppercase tracking-[0.3em] text-tertiary mb-6 block">Established 1894</span>
+<h1 class="font-headline text-primary text-6xl md:text-8xl leading-none mb-8 -ml-1">
+                        A Legacy <br/><span class="italic">Uncorked.</span>
+</h1>
+<p class="font-body text-lg text-on-surface-variant max-w-md leading-relaxed">
+                        For over a century, the Editorial Cellar has been the silent witness to time, curating only the most eloquent expressions of the vine.
+                    </p>
+</div>
+<div class="md:col-span-6 relative">
+<div class="aspect-[3/4] w-full bg-surface-container-highest overflow-hidden rounded-lg editorial-shadow transform rotate-2">
+<img class="w-full h-full object-cover" data-alt="Cinematic close-up of a vintage wine bottle in a dusty candlelit stone cellar with soft amber backlighting and moody atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6lysfBeryigaP3EPQfLvg-Xxg_Hy50JofrdJVweT9lT05jrAYJ5yRUzMetBSvJh8RoZXsLLx2zyvgFfE-ItMUdfwvvUU_eRtHR0OvmibjNBzf14zmEaoFKtjqdtkTwtLuIsNAUDxwrIIGWr7nJZiae4oIPaX5L8nrR3IVkv44tv68iBGR8kIv_H-ZNh8mp0TAB1GMSaHvTqGi5KVfREGnhKTLhq8qorWJ_REpASgubzqjP98HbuwzjJbfVqFpfbrDuZE9rxpDIGLp"/>
+</div>
+<div class="absolute -bottom-12 -left-12 aspect-square w-64 bg-primary overflow-hidden rounded-lg editorial-shadow transform -rotate-3 border-[12px] border-surface">
+<img class="w-full h-full object-cover opacity-90" data-alt="Overhead view of sun-drenched vineyards during harvest season with rolling hills and warm golden morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5tAWfmciXKBkJ_P_eEeW_dJ0lOkVbgG-VggXTjpU36EH4FjtsI-gcnvWWI0Q1B1z1oZ1sBgtU3FQMPae8-kfb58-wLWnP03YxuWFYBcG-_GeoMCQZ74q-sHhAUEUlKreWOjNGRldBvKLLaNuyOyToGGDIEJ6qJ8vFPXFYQOpfnjLBHDXMGS8dQzkiW-CnrM5gHSh66uMN3vBXuqFD3Tvf8Yg7mWGZis6P7GnaWfFFveBG3wSrqigEdCoL1RsU8Xg9F6OF_dW_9FoF"/>
+</div>
+</div>
+</div>
+</section>
+<!-- The Philosophy -->
+<section class="py-32 bg-surface">
+<div class="container mx-auto px-12">
+<div class="max-w-4xl mx-auto text-center">
+<h2 class="font-headline text-4xl text-primary mb-12 italic">"We do not make wine; we translate the terroir into poetry."</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-16 text-left mt-24">
+<div>
+<h3 class="font-headline text-xl text-primary mb-4">The Soil</h3>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">Our roots reach deep into the limestone-rich earth of the valley, where every mineral tells a story of prehistoric oceans.</p>
+</div>
+<div>
+<h3 class="font-headline text-xl text-primary mb-4">The Patience</h3>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">We wait for the grape to reach its zenith. There is no clock in the cellar, only the slow heartbeat of fermentation.</p>
+</div>
+<div>
+<h3 class="font-headline text-xl text-primary mb-4">The Craft</h3>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">Passed down through five generations, our methods remain stubbornly manual, honoring the touch of the artisan.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Timeline / Heritage Bento Grid -->
+<section class="py-32 bg-surface-container-low">
+<div class="container mx-auto px-12">
+<div class="mb-20">
+<h2 class="font-headline text-5xl text-primary mb-4">A Century of Craftsmanship</h2>
+<div class="w-24 h-1 bg-tertiary"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[1200px]">
+<!-- 1894 -->
+<div class="md:col-span-8 bg-surface-container-lowest p-12 rounded-lg flex flex-col justify-between editorial-shadow relative group overflow-hidden">
+<div class="z-10">
+<span class="font-headline text-7xl text-outline-variant/30 absolute top-8 right-8">1894</span>
+<h3 class="font-headline text-3xl text-primary mb-6">The Founding Father</h3>
+<p class="font-body text-lg text-on-surface-variant max-w-xl leading-relaxed">
+                                Arthur Montague acquired the first ten acres of the Cellar estate. Armed with nothing but a surveyor’s map and a passion for French oak, he planted the original 'Old Block' vines that still produce our flagship reserve today.
+                            </p>
+</div>
+<div class="mt-12 aspect-video overflow-hidden rounded-lg">
+<img class="w-full h-full object-cover grayscale" data-alt="Antique sepia-toned photograph of a bearded man tending to young grapevines in an expansive landscape" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCs81ls74aigL5mUn8VSeVyjo8NMg9Xnvofv3Ix5Clua9Vv2ohbFzWRM6twRtzDRYAw4fJXeHeY77raZWaSLXNGzyOT3ojUzPQWgs2OssuChd1FF7CbQZLFqYEJjDmgAuEzxCmmFCA0Qb3gJx_Jdmg1weOZ-RKlL0YOu8WPvQKMggvi_cYqb3-UU3-6id04jBNhAnIBzIs-LfpsgcneGMJ9HpwD49m3R8KO_NNcifBuwsGa7HlgxExvNE-COD19zkPy2ghIoNTBhJhy"/>
+</div>
+</div>
+<!-- 1920s -->
+<div class="md:col-span-4 bg-primary text-on-primary p-12 rounded-lg flex flex-col justify-center editorial-shadow">
+<span class="font-headline text-5xl text-on-primary-container/20 mb-4">1923</span>
+<h3 class="font-headline text-2xl mb-6">The Secret Vintages</h3>
+<p class="font-label text-sm leading-relaxed opacity-80 uppercase tracking-widest">
+                            During the years of prohibition, the cellar remained active in shadow. These 'lost' vintages were preserved in a hidden subterranean chamber discovered only in 1982.
+                        </p>
+</div>
+<!-- 1950s -->
+<div class="md:col-span-4 bg-surface-container-highest p-12 rounded-lg flex flex-col justify-between editorial-shadow">
+<div class="aspect-square overflow-hidden rounded-lg mb-8">
+<img class="w-full h-full object-cover" data-alt="Detailed close-up of hand-drawn vintage wine labels with elegant calligraphy and faded parchment texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC38dAS3ro7U1rAWN0i1uNSaN4bJwxmPDDMNsIyhLjScQeIOc9q_mVidhBhPIWzRFoNTIGKttvqeThlLCLN2eTpSq4PqRKBnS9Z195Gw866r-0cxFEQFP88d5RwD0-2-LXBaDK-kVZ4tNsX2QSK3Ir13aEATWBHI80rXSnWhN7JP6lIfkT1fKjd8PrESIcoL5W49Nbj3MahQLfkp5t8MnzrXXkDLBAXhTLrk3F-7Wr9Z17E2zuGBOsW8p5NEoSZiH3bwnXNno0g4rgb"/>
+</div>
+<div>
+<span class="font-headline text-4xl text-primary/30">1958</span>
+<h3 class="font-headline text-2xl text-primary mt-2">The Modern Renaissance</h3>
+<p class="font-body text-sm text-on-surface-variant mt-4">Introduction of temperature-controlled fermentation revolutionized our consistency while maintaining artisanal flavor profiles.</p>
+</div>
+</div>
+<!-- 2000s -->
+<div class="md:col-span-8 bg-surface-container-lowest p-12 rounded-lg flex flex-col md:flex-row gap-12 items-center editorial-shadow">
+<div class="flex-1">
+<span class="font-headline text-5xl text-tertiary mb-4 block">2004</span>
+<h3 class="font-headline text-3xl text-primary mb-6">Sustainability &amp; Soil</h3>
+<p class="font-body text-base text-on-surface-variant leading-relaxed">
+                                Under the leadership of Elena Montague, the estate transitioned to fully organic viticulture. We introduced biodiversity corridors, allowing the natural flora of the valley to protect our vines.
+                            </p>
+</div>
+<div class="w-full md:w-1/2 aspect-square overflow-hidden rounded-lg">
+<img class="w-full h-full object-cover" data-alt="Lush vineyard rows at sunset with wildflowers growing between the vines and soft purple and orange sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByv2mYY1KdOoWF88GAfQOZKkHdwFWBDGN_RYVOp65nqquNpFuTGDAGPecrn4DoWdW1SA133lWaTM63mIBB7XJN9GevL3mJTP5j7Kimt_ZyTqRUSRdI1WRq1s3BebNW-ha4vUyecIcySVOh02YlywwFXKWYPRZQSIPKXplrU90-9OUZoS0eECSzQK5zZyg-7qp5NEL0EwLhYX5cc-t5mzPfjomIivpmhWEnt6EtCBwhGbS1welnziyklSVo5DDgcyEPf-0bPs58OZzV"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Large Editorial Break -->
+<section class="h-[614px] relative overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Panoramic view of a grand stone winery architecture at dusk with warm glowing windows and silhouettes of cypress trees" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSS9Sdznr_JJw2ixxvreypojY_DkH5T4vY0E7LtaCYr4mwJl3yc3sbCisne9GP4o6Nx4ODmXp04Arg2nLChC77I2fNmXn26BHrOxLYs6K_WMwVcx29-Fchzvq6u7q9AAWXtsvEVpJFjwI2zx-lyow6VjP09NHSOO0snbErzRGITnOKOkvb1xhOse2S41xyE1kQI01YBxVfy7JirjNelHTYvFGxTUF0HTteM7PZl2h0obXUFezahs3z7SYDwum0k487425aJQDesmG4"/>
+<div class="absolute inset-0 bg-primary/20 backdrop-brightness-75 flex items-center justify-center">
+<div class="text-center">
+<h2 class="font-headline text-white text-5xl md:text-7xl italic px-4">Traditional Heart, Modern Palate.</h2>
+</div>
+</div>
+</section>
+<!-- Our Process / The Cellar Today -->
+<section class="py-32 bg-surface">
+<div class="container mx-auto px-12 grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
+<div class="order-2 md:order-1">
+<div class="relative">
+<div class="aspect-[4/5] bg-surface-container-low rounded-lg overflow-hidden editorial-shadow">
+<img class="w-full h-full object-cover" data-alt="Rows of oak wine barrels in a dim cellar with dramatic lighting highlighting the wood grain and metal hoops" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3r2h7XKPkrrSxHPKSoTGcWQwenUGmS2bug8H8hDelLMf1PVjYb6EXcARFsdl8i-1bLMoaXBBYUqBdhDSR43P7uSZUBDcjBgs8HfJD4MCRNVUyl1XBSqtMddGXu1GqZR-Trcp8cBheZX3kuFa71rozqQ3TtJSl04avpxPudrUbDl-0gtq5OvGCboIgf-o15qm-KaFBacrlNwslhfvdBNz-LUusgRkapyv_xykgu1SQB_PCWrO-NFTUhrkqW0sQQ6hFAiRI5_ICMz4Y"/>
+</div>
+<div class="absolute -top-10 -right-10 bg-tertiary-fixed text-on-tertiary-fixed p-8 rounded-lg editorial-shadow">
+<p class="font-headline text-2xl italic">"Hand-selected, <br/>Heart-poured."</p>
+</div>
+</div>
+</div>
+<div class="order-1 md:order-2">
+<span class="font-label text-xs uppercase tracking-widest text-secondary mb-6 block">The Present Day</span>
+<h2 class="font-headline text-5xl text-primary mb-8 leading-tight">Preserving the <br/>Art of the Cellar.</h2>
+<p class="font-body text-lg text-on-surface-variant mb-12 leading-relaxed">
+                        Today, The Editorial Cellar stands as a beacon of uncompromising quality. We produce limited runs—only what the earth permits—ensuring that every bottle is a collector’s narrative.
+                    </p>
+<div class="space-y-6">
+<div class="flex items-center space-x-4 border-b border-outline-variant/20 pb-4">
+<span class="material-symbols-outlined text-tertiary" data-icon="temp_preferences_custom">temp_preferences_custom</span>
+<span class="font-body font-medium">Bespoke Climate Control</span>
+</div>
+<div class="flex items-center space-x-4 border-b border-outline-variant/20 pb-4">
+<span class="material-symbols-outlined text-tertiary" data-icon="eco">eco</span>
+<span class="font-body font-medium">100% Carbon Neutral Estate</span>
+</div>
+<div class="flex items-center space-x-4 border-b border-outline-variant/20 pb-4">
+<span class="material-symbols-outlined text-tertiary" data-icon="verified">verified</span>
+<span class="font-body font-medium">Heritage Authenticity Guarantee</span>
+</div>
+</div>
+<button class="mt-12 px-8 py-4 bg-primary text-white font-label text-xs uppercase tracking-[0.2em] rounded-md hover:bg-primary-container transition-all active:scale-95 shadow-lg">
+                        Visit the Estate
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-20 px-12 flex flex-col items-center space-y-8 bg-[#fbfbe2] border-t border-[#dac1bf]/15">
+<div class="font-['Noto_Serif'] text-lg italic text-[#2a0002]">The Editorial Cellar</div>
+<div class="flex flex-wrap justify-center gap-12">
+<a class="font-['Manrope'] text-[0.75rem] uppercase tracking-widest text-[#1b1d0e]/50 hover:text-[#2a0002] underline decoration-[#735c00] transition-opacity" href="#">Terms of Service</a>
+<a class="font-['Manrope'] text-[0.75rem] uppercase tracking-widest text-[#1b1d0e]/50 hover:text-[#2a0002] underline decoration-[#735c00] transition-opacity" href="#">Privacy Policy</a>
+<a class="font-['Manrope'] text-[0.75rem] uppercase tracking-widest text-[#1b1d0e]/50 hover:text-[#2a0002] underline decoration-[#735c00] transition-opacity" href="#">Shipping &amp; Returns</a>
+<a class="font-['Manrope'] text-[0.75rem] uppercase tracking-widest text-[#1b1d0e]/50 hover:text-[#2a0002] underline decoration-[#735c00] transition-opacity" href="#">Wholesale</a>
+</div>
+<div class="pt-12 text-center">
+<p class="font-['Manrope'] text-[0.75rem] uppercase tracking-widest text-[#1b1d0e]/50">© 2024 The Editorial Cellar. Crafted for the Patient Palate.</p>
+</div>
+</footer>
+</body></html>

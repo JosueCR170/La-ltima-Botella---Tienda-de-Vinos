@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#e4e4cc",
+                    "primary": "#2a0002",
+                    "secondary-container": "#fed7d0",
+                    "outline-variant": "#dac1bf",
+                    "inverse-surface": "#303221",
+                    "outline": "#877270",
+                    "surface-container-highest": "#e4e4cc",
+                    "surface-tint": "#954742",
+                    "on-tertiary-fixed-variant": "#574500",
+                    "error-container": "#ffdad6",
+                    "primary-container": "#4a0e0e",
+                    "on-tertiary-container": "#4f3e00",
+                    "on-primary-container": "#cc726d",
+                    "error": "#ba1a1a",
+                    "on-background": "#1b1d0e",
+                    "on-primary-fixed-variant": "#77302d",
+                    "surface-dim": "#dbdcc3",
+                    "on-primary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-surface": "#1b1d0e",
+                    "background": "#fbfbe2",
+                    "on-tertiary": "#ffffff",
+                    "surface-container": "#efefd7",
+                    "tertiary-fixed": "#ffe088",
+                    "surface-container-low": "#f5f5dc",
+                    "on-surface-variant": "#544341",
+                    "primary-fixed-dim": "#ffb3ad",
+                    "primary-fixed": "#ffdad7",
+                    "on-secondary-fixed": "#2b1613",
+                    "surface-bright": "#fbfbe2",
+                    "secondary-fixed": "#ffdad4",
+                    "on-secondary-container": "#795c57",
+                    "surface": "#fbfbe2",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary": "#735c00",
+                    "on-primary-fixed": "#3d0506",
+                    "secondary-fixed-dim": "#e3beb8",
+                    "tertiary-fixed-dim": "#e9c349",
+                    "tertiary-container": "#cca830",
+                    "inverse-primary": "#ffb3ad",
+                    "inverse-on-surface": "#f2f2d9",
+                    "secondary": "#745853",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed-variant": "#5b403c",
+                    "on-tertiary-fixed": "#241a00",
+                    "surface-container-high": "#eaead1",
+                    "on-secondary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .serif-italic { font-style: italic; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-tertiary-fixed">
+<!-- TopNavBar Implementation -->
+<nav class="flex justify-between items-center px-12 py-6 w-full sticky top-0 z-50 bg-[#e4e4cc]/70 backdrop-blur-3xl transition-all">
+<div class="flex items-center space-x-12">
+<span class="font-['Noto_Serif'] text-2xl font-bold italic text-[#2a0002]">The Editorial Cellar</span>
+<div class="hidden md:flex space-x-8 font-['Noto_Serif'] text-lg tracking-tight">
+<a class="text-[#2a0002] border-b-2 border-[#735c00] pb-1" href="#">The Cellar</a>
+<a class="text-[#1b1d0e]/70 hover:text-[#2a0002] transition-colors duration-300" href="#">Vintages</a>
+<a class="text-[#1b1d0e]/70 hover:text-[#2a0002] transition-colors duration-300" href="#">Our Story</a>
+<a class="text-[#1b1d0e]/70 hover:text-[#2a0002] transition-colors duration-300" href="#">Contact</a>
+</div>
+</div>
+<div class="flex items-center space-x-6">
+<div class="hidden lg:block relative">
+<input class="bg-transparent border-b border-outline-variant/30 focus:border-tertiary outline-none py-1 px-2 text-sm placeholder:italic" placeholder="Search the collection..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-[#2a0002] hover:opacity-80 active:scale-95 transition-all" data-icon="shopping_bag">shopping_bag</button>
+<button class="material-symbols-outlined text-[#2a0002] hover:opacity-80 active:scale-95 transition-all" data-icon="person">person</button>
+</div>
+</nav>
+<main class="flex min-h-screen px-12 pt-12 pb-24 gap-16">
+<!-- Filter Sidebar -->
+<aside class="w-64 flex-shrink-0 space-y-12">
+<header>
+<h2 class="font-headline text-2xl text-primary font-bold">Curate Your View</h2>
+<p class="text-xs font-label uppercase tracking-widest text-secondary mt-2 opacity-70">Filtering the cellar</p>
+</header>
+<!-- Variety Filter -->
+<section class="space-y-4">
+<h3 class="font-headline text-lg italic border-b border-outline-variant/15 pb-2">Grape Variety</h3>
+<div class="flex flex-col space-y-2">
+<label class="flex items-center space-x-3 cursor-pointer group">
+<div class="w-4 h-4 border border-outline-variant group-hover:border-tertiary rounded-sm transition-colors"></div>
+<span class="text-sm font-medium text-on-surface/80 group-hover:text-primary">Cabernet Sauvignon</span>
+</label>
+<label class="flex items-center space-x-3 cursor-pointer group">
+<div class="w-4 h-4 bg-primary rounded-sm flex items-center justify-center">
+<span class="material-symbols-outlined text-[10px] text-white" style="font-variation-settings: 'wght' 700;">check</span>
+</div>
+<span class="text-sm font-bold text-primary">Merlot</span>
+</label>
+<label class="flex items-center space-x-3 cursor-pointer group">
+<div class="w-4 h-4 border border-outline-variant group-hover:border-tertiary rounded-sm transition-colors"></div>
+<span class="text-sm font-medium text-on-surface/80 group-hover:text-primary">Pinot Noir</span>
+</label>
+<label class="flex items-center space-x-3 cursor-pointer group">
+<div class="w-4 h-4 border border-outline-variant group-hover:border-tertiary rounded-sm transition-colors"></div>
+<span class="text-sm font-medium text-on-surface/80 group-hover:text-primary">Syrah</span>
+</label>
+</div>
+</section>
+<!-- Price Range -->
+<section class="space-y-4">
+<h3 class="font-headline text-lg italic border-b border-outline-variant/15 pb-2">Investment</h3>
+<div class="space-y-6 pt-2">
+<div class="relative h-1 bg-surface-container-high rounded-full">
+<div class="absolute h-full w-2/3 bg-tertiary left-1/4 rounded-full"></div>
+<div class="absolute -top-1.5 left-1/4 w-4 h-4 bg-primary rounded-full shadow-md"></div>
+<div class="absolute -top-1.5 left-[91%] w-4 h-4 bg-primary rounded-full shadow-md"></div>
+</div>
+<div class="flex justify-between text-[10px] font-label uppercase tracking-tighter text-on-surface/60">
+<span>$50.00</span>
+<span>$2,500.00+</span>
+</div>
+</div>
+</section>
+<!-- Food Pairing Selection Chips -->
+<section class="space-y-4">
+<h3 class="font-headline text-lg italic border-b border-outline-variant/15 pb-2">Pairings</h3>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-primary text-on-primary text-[10px] font-label rounded-full uppercase tracking-widest cursor-pointer">Venison</span>
+<span class="px-3 py-1 bg-surface-container-high text-on-surface text-[10px] font-label rounded-full uppercase tracking-widest hover:bg-surface-container-highest transition-colors cursor-pointer">Hard Cheeses</span>
+<span class="px-3 py-1 bg-surface-container-high text-on-surface text-[10px] font-label rounded-full uppercase tracking-widest hover:bg-surface-container-highest transition-colors cursor-pointer">Dark Chocolate</span>
+<span class="px-3 py-1 bg-surface-container-high text-on-surface text-[10px] font-label rounded-full uppercase tracking-widest hover:bg-surface-container-highest transition-colors cursor-pointer">Grilled Roots</span>
+</div>
+</section>
+</aside>
+<!-- Product Grid -->
+<section class="flex-grow">
+<div class="flex justify-between items-end mb-12">
+<div>
+<h1 class="font-headline text-4xl text-primary font-bold tracking-tight">The Cellar Collection</h1>
+<p class="text-on-surface/60 mt-2 font-headline italic">127 curated expressions from the 2018-2022 vintages.</p>
+</div>
+<div class="flex space-x-4 items-center font-label text-xs uppercase tracking-widest text-on-surface/50">
+<span>Sort by:</span>
+<button class="flex items-center text-primary font-bold">Rare First <span class="material-symbols-outlined ml-1 text-sm">expand_more</span></button>
+</div>
+</div>
+<!-- Bento-style Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-y-16 gap-x-8">
+<!-- Card 1 (Large Editorial) -->
+<article class="md:col-span-2 flex bg-surface-container-low rounded-lg overflow-hidden group border-none">
+<div class="w-1/2 overflow-hidden bg-surface-container-highest">
+<img alt="Luxury Wine Bottle" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="dramatic close-up of a premium wine bottle label against a dark cellar background with warm glowing candlelight highlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHBVMo34BFJWMhkrbM5NOp0qp7iBrDDinvVBzqOVEoQ6rnSiEA3W3cd-rLwrgM4-tOkWtBOc9rW5nr2DO6zV132JJbmgeAjcoP2QPuFMR97Hx7LZkZ6t3XYWVOO-Lf9L9Pq-_IhILHJihXCKe5atAVCLB4aYnQVgG3JGE1fWuyV_99A3P_g73LcQoGm9vfVnMaAwzqBEuuIq3P25ymyA-WWGtSik3O6dQ4ZffRstIzZgzewbbD401l7ej9QhmGtNTAJkSj4g71Ssqs"/>
+</div>
+<div class="w-1/2 p-12 flex flex-col justify-center space-y-6">
+<span class="text-tertiary font-label text-[10px] uppercase tracking-[0.3em]">Signature Vintage</span>
+<h2 class="font-headline text-3xl text-primary leading-tight">Château d'Élite Reserve 2018</h2>
+<p class="text-sm text-on-surface/70 leading-relaxed font-body">A majestic blend defined by deep forest fruits, structured tannins, and a lingering obsidian finish. Curated for long-term cellar aging.</p>
+<div class="flex items-center justify-between pt-4">
+<span class="text-xl font-headline text-primary">$420.00</span>
+<button class="bg-primary text-on-primary px-6 py-3 rounded-md text-[10px] font-label uppercase tracking-widest hover:bg-primary-container transition-all active:scale-95 shadow-lg shadow-primary/20">Add to Cellar</button>
+</div>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="flex flex-col space-y-4 group">
+<div class="aspect-[4/5] bg-surface-container overflow-hidden rounded-lg relative">
+<img alt="Red Wine" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="minimalist studio photography of a ruby red wine bottle on a cream stone pedestal with soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzX7Qe2Aq9X8x8qqn-yc17CP5gc0sBn1pNV58Zxy_pVZjM0q5RGzghMyk-dWHKPrk-3H3fxRLh0408RzUq1yq9Qnbd_Bf5fN2uzPQTVGeaf7jN8ru2_1y2ODbjbDCQQbTGXjC2jeonHrpOr0k17TQ06amC0rIhKv0cGoTVGbgl-K_nF9ZCjnvi_b3jJSvscbRM0i-ETdtsgBHx86C8zXKMae-BrMVTxQ1bqia0OXWhAkQpjSq_uR0vsW1xTZsmzY1_9vrYvD2EW_e0"/>
+<div class="absolute top-4 right-4 bg-tertiary-fixed text-on-tertiary-fixed text-[9px] px-2 py-1 font-label uppercase tracking-widest rounded-full">Rare find</div>
+</div>
+<div class="space-y-1">
+<h3 class="font-headline text-xl text-primary">Meridian Ridge Syrah</h3>
+<div class="flex justify-between items-center text-xs text-on-surface/50 font-label uppercase tracking-wider">
+<span>Sonoma Valley, 2020</span>
+<span class="text-tertiary font-bold">$185.00</span>
+</div>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="flex flex-col space-y-4 group">
+<div class="aspect-[4/5] bg-surface-container overflow-hidden rounded-lg relative">
+<img alt="White Wine" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="elegant white wine bottle condensation droplets on glass vibrant gold liquid in sunlit vineyard setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTQgjd7vBKXO2yZ-CTMU_-_SK49sWhkL-7miB8n8MqDtrzWPTPkjJ00PbsEHK3sK5n17UKXTmKpFSI_b1vkIc6YCSe-Il_Zz7KpeNimuwOiGqVlUuBdJz-vpY5IhGgV6iqdeOCBx8WUCGZ1-hk5RIi71KYEsnxl4q9WAXEXYhZMTngl63779LP3_Jk36Q1JiJwtZdAuPnnuz9f5ucBH0O9AwF9IGE_gDR4ev6fGMiCqsSVGJhwM9_ve4DYEUvHt4UFOmo0-pCXq2vn"/>
+</div>
+<div class="space-y-1">
+<h3 class="font-headline text-xl text-primary">Vidal Blanc 'L'Éclat'</h3>
+<div class="flex justify-between items-center text-xs text-on-surface/50 font-label uppercase tracking-wider">
+<span>Loire Valley, 2021</span>
+<span class="text-tertiary font-bold">$85.00</span>
+</div>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="flex flex-col space-y-4 group">
+<div class="aspect-[4/5] bg-surface-container overflow-hidden rounded-lg relative">
+<img alt="Deep Red Wine" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="top down view of wine bottles in dark wooden cellar racks with soft moody lighting and dust particles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaNFbgmNwUqkv0TkW1zv1YwqWRb_f01cBsAtCNGGY2vpu9HKooZDw7lVe2NPb8XRHqjHyrHFu9PLX-0a65JMZA1AfenXaCZ1FjbyvniIBY0riP0noEdq8MENFuHPhctYzHiO8R7cQ9l08k3u9uaG0OplFanOtzZ3b3meoVtZnMm2DjESqjjtmaDI_wkITANkt-A6zn2nQFagihCR-gXwxBQFemVuP3MjTBCCgfjHlpSOxia33QaQFqUAqqEqb0JebEniOR99OqcCUX"/>
+</div>
+<div class="space-y-1">
+<h3 class="font-headline text-xl text-primary">Iron Bark Cabernet</h3>
+<div class="flex justify-between items-center text-xs text-on-surface/50 font-label uppercase tracking-wider">
+<span>Barossa Valley, 2019</span>
+<span class="text-tertiary font-bold">$295.00</span>
+</div>
+</div>
+</article>
+<!-- Card 5 (Asymmetric Tall Card) -->
+<article class="flex flex-col space-y-4 group xl:mt-[-4rem]">
+<div class="aspect-[3/4] bg-surface-container-highest overflow-hidden rounded-lg relative">
+<img alt="Aged Wine" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="macro shot of a vintage wine cork and dark textured glass bottle neck on aged parchment paper" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkls7NLFMJM_VB9CJ1OnxrOT4YtY5JZBeKEvprn2aC-zTj3yy92nprtn46G-EwDHZZg_LTpMieyDypTdLDaefZtUcDQXtq6YVtM6PSdbqs1VHMCXZTZT9pqNwqVfc7Aak9TaPD4U4df7371KZbL7fPYoFgh6v64jC66AGDsJQbmfwOAI7Y0oKnXDxd6VSUvTWmreN45M0kqQBUgBggRwPz3p35lRnHPnlszNf3-AXnTNnLYsUFQyJ6qwHnZxlUrMGebUtbV1wjCpK1"/>
+</div>
+<div class="space-y-1">
+<h3 class="font-headline text-xl text-primary">Tuscan Sun Brunello</h3>
+<div class="flex justify-between items-center text-xs text-on-surface/50 font-label uppercase tracking-wider">
+<span>Montalcino, 2017</span>
+<span class="text-tertiary font-bold">$310.00</span>
+</div>
+</div>
+</article>
+<!-- Card 6 -->
+<article class="flex flex-col space-y-4 group">
+<div class="aspect-[4/5] bg-surface-container overflow-hidden rounded-lg relative">
+<img alt="Rosé Wine" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="soft pink rosé wine bottle in a bowl of ice with summer morning sunlight streaming through window" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzqy9t_StIZ6HKvetQ_aPh5TmYpFsyLfx7WeDuMASBzY2XRtaNUoxiX5K45GovlnpfVRYh6NsYhkpKZRhfg6o3fMzuBUv61agdVCBmVZKoOwKPevtMhNTti193dWg5HT36U0uy4J9FJiFvOQMsY3WUEqXRRvuELC2BtlK3VZij2HokQJcUoE_xQJP8DXr2RhORgXqlrDP_Ty5KmBNEMsZCTKyPBcpUgfjPygCaSI_VqCqcgNSiB25ys0p65eo12CIS7fk4C4GPV-KM"/>
+</div>
+<div class="space-y-1">
+<h3 class="font-headline text-xl text-primary">Provence Petals Rosé</h3>
+<div class="flex justify-between items-center text-xs text-on-surface/50 font-label uppercase tracking-wider">
+<span>Provence, 2022</span>
+<span class="text-tertiary font-bold">$65.00</span>
+</div>
+</div>
+</article>
+</div>
+<!-- Pagination/Load More -->
+<div class="mt-24 flex flex-col items-center space-y-6">
+<div class="h-px w-24 bg-outline-variant/30"></div>
+<button class="text-primary font-headline italic text-lg hover:text-tertiary transition-colors flex items-center group">
+                    Discover More Vintages
+                    <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Footer Implementation -->
+<footer class="w-full py-20 px-12 flex flex-col items-center space-y-8 bg-[#fbfbe2] border-t border-[#dac1bf]/15">
+<div class="font-['Noto_Serif'] text-lg italic text-[#2a0002]">The Editorial Cellar</div>
+<div class="flex flex-wrap justify-center gap-x-12 gap-y-4">
+<a class="font-['Manrope'] text-[0.75rem] uppercase tracking-widest text-[#1b1d0e]/50 hover:text-[#2a0002] underline decoration-[#735c00] transition-opacity" href="#">Terms of Service</a>
+<a class="font-['Manrope'] text-[0.75rem] uppercase tracking-widest text-[#1b1d0e]/50 hover:text-[#2a0002] underline decoration-[#735c00] transition-opacity" href="#">Privacy Policy</a>
+<a class="font-['Manrope'] text-[0.75rem] uppercase tracking-widest text-[#1b1d0e]/50 hover:text-[#2a0002] underline decoration-[#735c00] transition-opacity" href="#">Shipping &amp; Returns</a>
+<a class="font-['Manrope'] text-[0.75rem] uppercase tracking-widest text-[#1b1d0e]/50 hover:text-[#2a0002] underline decoration-[#735c00] transition-opacity" href="#">Wholesale</a>
+</div>
+<div class="font-['Manrope'] text-[0.75rem] uppercase tracking-widest text-[#1b1d0e]/50">
+            © 2024 The Editorial Cellar. Crafted for the Patient Palate.
+        </div>
+</footer>
+</body></html>
