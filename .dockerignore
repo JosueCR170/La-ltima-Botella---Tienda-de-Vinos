@@ -1,0 +1,47 @@
+# ─────────────────────────────────────────────────────────────────
+# .dockerignore — La Última Botella
+# Excluye archivos innecesarios del contexto de build de Docker
+# ─────────────────────────────────────────────────────────────────
+
+# Dependencias locales (se instalan dentro del contenedor)
+vendor/
+node_modules/
+
+# Assets compilados localmente (se recompilan en el build)
+public/hot
+public/build/
+
+# Variables de entorno locales (sensibles — NO deben ir en la imagen)
+.env
+.env.local
+.env.*.local
+
+# Control de versiones
+.git/
+.gitignore
+.gitattributes
+
+# Tests (no necesarios en producción)
+tests/
+phpunit.xml
+
+# Archivos de desarrollo
+*.log
+*.cache
+.editorconfig
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Documentación
+README.md
+CHANGELOG*
+
+# Docker (no hace falta copiarlos dentro de la imagen)
+Dockerfile
+docker-compose.yml
+docker-compose*.yml
+.dockerignore
+docker/
