@@ -12,7 +12,7 @@ class ProductoController extends Controller
 {
     public function index()
     {
-        $productos = Producto::with(['categoria', 'marca'])->get();
+        $productos = Producto::with(['categoria', 'marca'])->paginate(10);
         return view('admin.productos.index', compact('productos'));
     }
 
