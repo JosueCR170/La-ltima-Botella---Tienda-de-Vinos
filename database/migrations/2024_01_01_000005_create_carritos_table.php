@@ -14,7 +14,6 @@ return new class extends Migration
             $table->string('estado', 20)->default('activo');
             $table->timestamps();
 
-            // Using standard Laravel users table with id
             $table->foreign('id_usuario')->references('id')->on('users')->onDelete('set null');
         });
     }

@@ -14,9 +14,10 @@ return new class extends Migration
             $table->integer('porcentaje')->nullable();
 
             $table->primary(['id_producto', 'id_variedad']);
+         
             
             $table->foreign('id_producto')->references('id_producto')->on('productos')->onDelete('cascade');
-            $table->foreign('id_variedad')->references('id_variedad')->on('variedads')->onDelete('cascade');
+            $table->foreign('id_variedad')->references('id_variedad')->on('variedades')->onDelete('cascade');
         });
     }
 
