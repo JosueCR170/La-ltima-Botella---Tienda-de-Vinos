@@ -10,10 +10,57 @@ use Illuminate\Http\Request;
 
 class ProductoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $productos = Producto::with(['categoria', 'marca'])->paginate(10);
-        return view('admin.productos.index', compact('productos'));
+        $query = Producto::with(['categoria', 'marca']);
+
+        // Búsqueda por nombre o descripción
+        if ($request->has('search') && !empty($request->search)) {
+            $searchTerm = '%' . $request->search . '%';
+            $query->where(function($q) use ($searchTerm) {
+                $q->where('nombre', 'like', $searchTerm)
+                  ->orWhere('descripcion', 'like', $searchTerm);
+            });
+        }
+
+        // Filtro por categoría
+        if ($request->has('categoria') && !empty($request->categoria)) {
+            $query->where('id_categoria', $request->categoria);
+        }
+
+        // Filtro por marca
+        if ($request->has('marca') && !empty($request->marca)) {
+            $query->where('id_marca', $request->marca);
+        }
+
+        // Ordenamiento
+        $sort = $request->get('sort', 'id_producto');
+        $direction = $request->get('direction', 'desc');
+
+        if ($sort === 'categoria') {
+            $query->join('categorias', 'productos.id_categoria', '=', 'categorias.id_categoria')
+                  ->orderBy('categorias.nombre', $direction)
+                  ->select('productos.*');
+        } elseif ($sort === 'marca') {
+            $query->join('marcas', 'productos.id_marca', '=', 'marcas.id_marca')
+                  ->orderBy('marcas.nombre', $direction)
+                  ->select('productos.*');
+        } else {
+            // Validar que la columna existe para evitar errores SQL
+            $allowedSorts = ['nombre', 'cantidad', 'precio', 'estado', 'id_producto', 'created_at'];
+            if (in_array($sort, $allowedSorts)) {
+                $query->orderBy($sort, $direction);
+            } else {
+                $query->orderBy('id_producto', 'desc');
+            }
+        }
+
+        $productos = $query->paginate(10)->withQueryString();
+        
+        $categorias = Categoria::all();
+        $marcas = Marca::all();
+
+        return view('admin.productos.index', compact('productos', 'categorias', 'marcas'));
     }
 
     public function create()

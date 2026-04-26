@@ -15,15 +15,95 @@
         </div>
     </header>
 
+    <!-- Barra de Filtros -->
+    <form action="{{ route('admin.productos.index') }}" method="GET" class="filter-bar">
+        <div class="filter-group">
+            <span class="material-symbols-outlined filter-icon">search</span>
+            <input type="text" name="search" class="filter-input" placeholder="Buscar por nombre o descripción..." value="{{ request('search') }}">
+        </div>
+
+        <div class="filter-group">
+            <select name="categoria" class="filter-select">
+                <option value="">Todas las Categorías</option>
+                @foreach($categorias as $categoria)
+                    <option value="{{ $categoria->id_categoria }}" {{ request('categoria') == $categoria->id_categoria ? 'selected' : '' }}>
+                        {{ $categoria->nombre }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <select name="marca" class="filter-select">
+                <option value="">Todas las Marcas</option>
+                @foreach($marcas as $marca)
+                    <option value="{{ $marca->id_marca }}" {{ request('marca') == $marca->id_marca ? 'selected' : '' }}>
+                        {{ $marca->nombre }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
+        <button type="submit" class="btn-filter">Filtrar</button>
+        
+        @if(request()->anyFilled(['search', 'categoria', 'marca']))
+            <a href="{{ route('admin.productos.index') }}" class="btn-reset">Limpiar Filtros</a>
+        @endif
+    </form>
+
     <div class="table-wrapper">
         <table class="premium-table">
             <thead>
                 <tr>
-                    <th>Producto</th>
-                    <th>Categoría / Marca</th>
-                    <th>Stock</th>
-                    <th>Precio</th>
-                    <th>Estado</th>
+                    <th>
+                        <a href="{{ route('admin.productos.index', array_merge(request()->query(), ['sort' => 'nombre', 'direction' => request('direction') == 'asc' ? 'desc' : 'asc'])) }}" class="sort-link">
+                            Producto
+                            <span class="material-symbols-outlined sort-icon {{ request('sort') == 'nombre' ? 'active' : '' }}">
+                                {{ request('sort') == 'nombre' ? (request('direction') == 'asc' ? 'arrow_upward' : 'arrow_downward') : 'unfold_more' }}
+                            </span>
+                        </a>
+                    </th>
+                    <th>
+                        <div style="display: flex; gap: 0.5rem; align-items: center;">
+                            <a href="{{ route('admin.productos.index', array_merge(request()->query(), ['sort' => 'categoria', 'direction' => request('direction') == 'asc' ? 'desc' : 'asc'])) }}" class="sort-link">
+                                Categoría
+                                <span class="material-symbols-outlined sort-icon {{ request('sort') == 'categoria' ? 'active' : '' }}">
+                                    {{ request('sort') == 'categoria' ? (request('direction') == 'asc' ? 'arrow_upward' : 'arrow_downward') : 'unfold_more' }}
+                                </span>
+                            </a>
+                            <span style="opacity: 0.3;">/</span>
+                            <a href="{{ route('admin.productos.index', array_merge(request()->query(), ['sort' => 'marca', 'direction' => request('direction') == 'asc' ? 'desc' : 'asc'])) }}" class="sort-link">
+                                Marca
+                                <span class="material-symbols-outlined sort-icon {{ request('sort') == 'marca' ? 'active' : '' }}">
+                                    {{ request('sort') == 'marca' ? (request('direction') == 'asc' ? 'arrow_upward' : 'arrow_downward') : 'unfold_more' }}
+                                </span>
+                            </a>
+                        </div>
+                    </th>
+                    <th>
+                        <a href="{{ route('admin.productos.index', array_merge(request()->query(), ['sort' => 'cantidad', 'direction' => request('direction') == 'asc' ? 'desc' : 'asc'])) }}" class="sort-link">
+                            Stock
+                            <span class="material-symbols-outlined sort-icon {{ request('sort') == 'cantidad' ? 'active' : '' }}">
+                                {{ request('sort') == 'cantidad' ? (request('direction') == 'asc' ? 'arrow_upward' : 'arrow_downward') : 'unfold_more' }}
+                            </span>
+                        </a>
+                    </th>
+                    <th>
+                        <a href="{{ route('admin.productos.index', array_merge(request()->query(), ['sort' => 'precio', 'direction' => request('direction') == 'asc' ? 'desc' : 'asc'])) }}" class="sort-link">
+                            Precio
+                            <span class="material-symbols-outlined sort-icon {{ request('sort') == 'precio' ? 'active' : '' }}">
+                                {{ request('sort') == 'precio' ? (request('direction') == 'asc' ? 'arrow_upward' : 'arrow_downward') : 'unfold_more' }}
+                            </span>
+                        </a>
+                    </th>
+                    <th>
+                        <a href="{{ route('admin.productos.index', array_merge(request()->query(), ['sort' => 'estado', 'direction' => request('direction') == 'asc' ? 'desc' : 'asc'])) }}" class="sort-link">
+                            Estado
+                            <span class="material-symbols-outlined sort-icon {{ request('sort') == 'estado' ? 'active' : '' }}">
+                                {{ request('sort') == 'estado' ? (request('direction') == 'asc' ? 'arrow_upward' : 'arrow_downward') : 'unfold_more' }}
+                            </span>
+                        </a>
+                    </th>
                     <th class="actions-cell">Acciones</th>
                 </tr>
             </thead>
@@ -88,7 +168,7 @@
                 @empty
                 <tr>
                     <td colspan="6" style="text-align: center; padding: 3rem; color: rgba(27, 29, 14, 0.4);">
-                        No se encontraron productos en la colección.
+                        No se encontraron productos que coincidan con los criterios.
                     </td>
                 </tr>
                 @endforelse
