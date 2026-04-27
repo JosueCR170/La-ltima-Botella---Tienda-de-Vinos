@@ -62,7 +62,9 @@
                         </div>
                     </td>
                     <td>
-                        <span class="badge badge-neutral">{{ $variedad->tipo }}</span>
+                        <span class="badge {{ $variedad->tipo == 'Tinta' ? 'badge-tinta' : ($variedad->tipo == 'Blanca' ? 'badge-blanca' : ($variedad->tipo == 'Aromatica' ? 'badge-aromatica' : 'badge-neutral')) }}">
+                            {{ $variedad->tipo }}
+                        </span>
                     </td>
                     <td class="actions-cell">
                         <div class="actions-wrapper">
@@ -105,8 +107,40 @@
         </table>
     </div>
 
+    <!-- Paginación -->
     <div class="pagination-container">
-        {{ $variedades->links() }}
+        <div class="pagination-info">
+            Mostrando <strong>{{ $variedades->firstItem() ?? 0 }}</strong> a <strong>{{ $variedades->lastItem() ?? 0 }}</strong> de <strong>{{ $variedades->total() }}</strong> variedades
+        </div>
+        <div class="pagination-controls">
+            @if ($variedades->onFirstPage())
+                <span class="page-disabled page-icon">
+                    <span class="material-symbols-outlined">chevron_left</span>
+                </span>
+            @else
+                <a href="{{ $variedades->previousPageUrl() }}" class="page-link page-icon">
+                    <span class="material-symbols-outlined">chevron_left</span>
+                </a>
+            @endif
+
+            @foreach ($variedades->getUrlRange(max(1, $variedades->currentPage() - 2), min($variedades->lastPage(), $variedades->currentPage() + 2)) as $page => $url)
+                @if ($page == $variedades->currentPage())
+                    <span class="page-current">{{ $page }}</span>
+                @else
+                    <a href="{{ $url }}" class="page-link">{{ $page }}</a>
+                @endif
+            @endforeach
+
+            @if ($variedades->hasMorePages())
+                <a href="{{ $variedades->nextPageUrl() }}" class="page-link page-icon">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </a>
+            @else
+                <span class="page-disabled page-icon">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </span>
+            @endif
+        </div>
     </div>
 </div>
 @endsection

@@ -34,7 +34,7 @@
                                 <option value="" disabled selected>Seleccionar...</option>
                                 <option value="Tinta" {{ old('tipo') == 'Tinta' ? 'selected' : '' }}>Tinta</option>
                                 <option value="Blanca" {{ old('tipo') == 'Blanca' ? 'selected' : '' }}>Blanca</option>
-                                <option value="Rosada" {{ old('tipo') == 'Rosada' ? 'selected' : '' }}>Rosada</option>
+                                <option value="Aromatica" {{ old('tipo') == 'Aromatica' ? 'selected' : '' }}>Aromatica</option>
                             </select>
                         </div>
                     </div>

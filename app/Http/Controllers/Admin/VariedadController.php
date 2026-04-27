@@ -10,7 +10,7 @@ class VariedadController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Variedad::query();
+        $query = Variedad::withCount('productos');
 
         if ($request->has('search') && !empty($request->search)) {
             $searchTerm = '%' . $request->search . '%';
@@ -20,7 +20,7 @@ class VariedadController extends Controller
 
         $sort = $request->get('sort', 'id_variedad');
         $direction = $request->get('direction', 'desc');
-        $allowedSorts = ['nombre', 'tipo', 'id_variedad'];
+        $allowedSorts = ['nombre', 'tipo', 'productos_count', 'id_variedad'];
         
         if (in_array($sort, $allowedSorts)) {
             $query->orderBy($sort, $direction);
