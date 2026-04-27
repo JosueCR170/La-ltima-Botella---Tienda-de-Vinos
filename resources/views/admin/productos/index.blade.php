@@ -1,10 +1,26 @@
 @extends('layouts.admin')
 
+@push('styles')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endpush
+
+@push('scripts')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.filter-select').select2({
+            width: '100%'
+        });
+    });
+</script>
+@endpush
+
 @section('content')
 <div class="index-view">
     <header class="index-header">
         <div class="header-info">
-            <h1>Inventario de Cava</h1>
+            <h1>Inventario de Productos</h1>
             <p>Gestiona la selección editorial de licores finos y vinos de cosecha.</p>
         </div>
         <div class="header-actions">
@@ -141,7 +157,7 @@
                         @endif
                     </td>
                     <td>
-                        <span class="price-text">₡{{ number_format($producto->precio, 2) }}</span>
+                        <span class="price-text">${{ number_format($producto->precio, 2) }}</span>
                     </td>
                     <td>
                         @if($producto->estado)
@@ -155,13 +171,34 @@
                             <a href="{{ route('admin.productos.edit', $producto->id_producto) }}" class="action-btn" title="Editar">
                                 <span class="material-symbols-outlined">edit</span>
                             </a>
-                            <form action="{{ route('admin.productos.destroy', $producto->id_producto) }}" method="POST" style="display: inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="action-btn delete" title="Eliminar" onclick="return confirm('¿Seguro que deseas eliminar este producto?')">
-                                    <span class="material-symbols-outlined">delete</span>
-                                </button>
-                            </form>
+                            
+                            <a href="#modal-delete-{{ $producto->id_producto }}" class="action-btn delete" title="Eliminar">
+                                <span class="material-symbols-outlined">delete</span>
+                            </a>
+
+                            <!-- Modal de Confirmación (Pure HTML/CSS) -->
+                            <div id="modal-delete-{{ $producto->id_producto }}" class="modal-overlay">
+                                <a href="#" class="modal-close-area"></a>
+                                <div class="modal-content">
+                                    <div class="modal-header-icon">
+                                        <span class="material-symbols-outlined">warning</span>
+                                    </div>
+                                    <h2>¿Eliminar Producto?</h2>
+                                    <p>Estás a punto de eliminar <strong>{{ $producto->nombre }}</strong> de la colección.</p>
+                                    <div class="modal-warning">
+                                        <span class="material-symbols-outlined" style="font-size: 16px;">info</span>
+                                        <span>Esta acción es irreversible. Se eliminarán permanentemente todos los datos técnicos y notas de cata asociados.</span>
+                                    </div>
+                                    <div class="modal-actions">
+                                        <a href="#" class="btn-modal-cancel">Mantener en Cava</a>
+                                        <form action="{{ route('admin.productos.destroy', $producto->id_producto) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn-modal-confirm">Eliminar Permanentemente</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </td>
                 </tr>

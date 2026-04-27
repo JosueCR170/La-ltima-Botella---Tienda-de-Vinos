@@ -11,6 +11,8 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    
+    @stack('styles')
 </head>
 <body class="admin-body">
     <div class="admin-wrapper">
@@ -62,8 +64,26 @@
         <!-- Main Content -->
         <main class="main-content">
             @if(session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
+                <div class="alert-premium success">
+                    <span class="material-symbols-outlined alert-icon">check_circle</span>
+                    <div class="alert-content">
+                        <span class="alert-title">Actualización Exitosa</span>
+                        <span class="alert-message">{{ session('success') }}</span>
+                    </div>
+                </div>
+            @endif
+
+            @if($errors->any())
+                <div class="alert-premium error">
+                    <span class="material-symbols-outlined alert-icon">error</span>
+                    <div class="alert-content">
+                        <span class="alert-title">Atención Sommelier</span>
+                        <ul class="alert-message">
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
             @endif
 
