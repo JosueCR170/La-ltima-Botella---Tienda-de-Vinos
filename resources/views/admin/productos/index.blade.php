@@ -171,13 +171,34 @@
                             <a href="{{ route('admin.productos.edit', $producto->id_producto) }}" class="action-btn" title="Editar">
                                 <span class="material-symbols-outlined">edit</span>
                             </a>
-                            <form action="{{ route('admin.productos.destroy', $producto->id_producto) }}" method="POST" style="display: inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="action-btn delete" title="Eliminar" onclick="return confirm('¿Seguro que deseas eliminar este producto?')">
-                                    <span class="material-symbols-outlined">delete</span>
-                                </button>
-                            </form>
+                            
+                            <a href="#modal-delete-{{ $producto->id_producto }}" class="action-btn delete" title="Eliminar">
+                                <span class="material-symbols-outlined">delete</span>
+                            </a>
+
+                            <!-- Modal de Confirmación (Pure HTML/CSS) -->
+                            <div id="modal-delete-{{ $producto->id_producto }}" class="modal-overlay">
+                                <a href="#" class="modal-close-area"></a>
+                                <div class="modal-content">
+                                    <div class="modal-header-icon">
+                                        <span class="material-symbols-outlined">warning</span>
+                                    </div>
+                                    <h2>¿Eliminar Producto?</h2>
+                                    <p>Estás a punto de eliminar <strong>{{ $producto->nombre }}</strong> de la colección.</p>
+                                    <div class="modal-warning">
+                                        <span class="material-symbols-outlined" style="font-size: 16px;">info</span>
+                                        <span>Esta acción es irreversible. Se eliminarán permanentemente todos los datos técnicos y notas de cata asociados.</span>
+                                    </div>
+                                    <div class="modal-actions">
+                                        <a href="#" class="btn-modal-cancel">Mantener en Cava</a>
+                                        <form action="{{ route('admin.productos.destroy', $producto->id_producto) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn-modal-confirm">Eliminar Permanentemente</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </td>
                 </tr>
