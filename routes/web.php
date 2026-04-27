@@ -13,9 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [\App\Http\Controllers\FrontendController::class, 'index'])->name('home');
+Route::get('/catalogo', [\App\Http\Controllers\FrontendController::class, 'catalogo'])->name('catalogo');
+Route::get('/about', [\App\Http\Controllers\FrontendController::class, 'about'])->name('about');
+Route::get('/producto/{id}', [\App\Http\Controllers\FrontendController::class, 'show'])->name('producto.show');
+Route::post('/carrito/agregar/{id}', [\App\Http\Controllers\FrontendController::class, 'agregarCarrito'])->name('carrito.add');
+Route::get('/carrito', [\App\Http\Controllers\FrontendController::class, 'carrito'])->name('carrito.index');
+Route::post('/carrito/eliminar/{id}', [\App\Http\Controllers\FrontendController::class, 'eliminarCarrito'])->name('carrito.remove');
 
 // Admin Routes
 Route::prefix('admindeVinos')->name('admin.')->group(function () {
