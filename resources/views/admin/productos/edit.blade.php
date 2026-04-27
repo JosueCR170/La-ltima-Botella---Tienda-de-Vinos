@@ -20,17 +20,18 @@
 
 @section('content')
 <div class="create-view-wrapper">
-    <form action="{{ route('admin.productos.store') }}" method="POST">
+    <form action="{{ route('admin.productos.update', $producto->id_producto) }}" method="POST">
         @csrf
+        @method('PUT')
         
         <header class="header-section">
             <div class="header-text">
-                <h1>Catalogar Nuevo Vino</h1>
-                <p>Define la narrativa, especificaciones técnicas y el legado de una nueva adición a la cava digital.</p>
+                <h1>Editar Registro de Vino</h1>
+                <p>Actualiza la narrativa y especificaciones técnicas de esta pieza de la colección.</p>
             </div>
             <div class="header-actions">
-                <a href="{{ route('admin.productos.index') }}" class="btn-discard">Descartar</a>
-                <button type="submit" class="btn-save">Guardar Colección</button>
+                <a href="{{ route('admin.productos.index') }}" class="btn-discard">Descartar Cambios</a>
+                <button type="submit" class="btn-save">Actualizar Cava</button>
             </div>
         </header>
 
@@ -45,31 +46,31 @@
                     <div class="input-grid">
                         <div class="form-group">
                             <label for="nombre">Nombre del Vino</label>
-                            <input type="text" name="nombre" id="nombre" placeholder="ej. Château Margaux" required value="{{ old('nombre') }}">
+                            <input type="text" name="nombre" id="nombre" placeholder="ej. Château Margaux" required value="{{ old('nombre', $producto->nombre) }}">
                         </div>
                         <div class="form-group">
                             <label for="anio_cosecha">Cosecha (Vintage)</label>
-                            <input type="number" name="anio_cosecha" id="anio_cosecha" placeholder="2018" value="{{ old('anio_cosecha') }}">
+                            <input type="number" name="anio_cosecha" id="anio_cosecha" placeholder="2018" value="{{ old('anio_cosecha', $producto->anio_cosecha) }}">
                         </div>
                         <div class="form-group">
                             <label for="pais">País de Origen</label>
                             <select name="pais" id="pais">
-                                <option value="" disabled {{ old('pais') ? '' : 'selected' }}>Seleccionar...</option>
+                                <option value="" disabled>Seleccionar...</option>
                                 @foreach($paises as $code => $nombre)
-                                    <option value="{{ $nombre }}" {{ old('pais') == $nombre ? 'selected' : '' }}>{{ $nombre }}</option>
+                                    <option value="{{ $nombre }}" {{ old('pais', $producto->pais) == $nombre ? 'selected' : '' }}>{{ $nombre }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="region">Región / Terroir</label>
-                            <input type="text" name="region" id="region" placeholder="Bordeaux" value="{{ old('region') }}">
+                            <input type="text" name="region" id="region" placeholder="Bordeaux" value="{{ old('region', $producto->region) }}">
                         </div>
                         <div class="form-group">
                             <label for="id_categoria">Categoría Editorial</label>
                             <select name="id_categoria" id="id_categoria" required>
-                                <option value="" disabled {{ old('id_categoria') ? '' : 'selected' }}>Seleccionar...</option>
+                                <option value="" disabled>Seleccionar...</option>
                                 @foreach($categorias as $categoria)
-                                    <option value="{{ $categoria->id_categoria }}" {{ old('id_categoria') == $categoria->id_categoria ? 'selected' : '' }}>
+                                    <option value="{{ $categoria->id_categoria }}" {{ old('id_categoria', $producto->id_categoria) == $categoria->id_categoria ? 'selected' : '' }}>
                                         {{ $categoria->nombre }}
                                     </option>
                                 @endforeach
@@ -78,9 +79,9 @@
                         <div class="form-group">
                             <label for="id_marca">Casa / Bodega</label>
                             <select name="id_marca" id="id_marca" required>
-                                <option value="" disabled {{ old('id_marca') ? '' : 'selected' }}>Seleccionar...</option>
+                                <option value="" disabled>Seleccionar...</option>
                                 @foreach($marcas as $marca)
-                                    <option value="{{ $marca->id_marca }}" {{ old('id_marca') == $marca->id_marca ? 'selected' : '' }}>
+                                    <option value="{{ $marca->id_marca }}" {{ old('id_marca', $producto->id_marca) == $marca->id_marca ? 'selected' : '' }}>
                                         {{ $marca->nombre }}
                                     </option>
                                 @endforeach
@@ -99,22 +100,22 @@
                         <div class="detail-card">
                             <label for="alcohol_porcentaje">Alcohol por Vol.</label>
                             <div class="value-wrapper">
-                                <input type="number" step="0.1" name="alcohol_porcentaje" id="alcohol_porcentaje" placeholder="13.5" value="{{ old('alcohol_porcentaje') }}">
+                                <input type="number" step="0.1" name="alcohol_porcentaje" id="alcohol_porcentaje" placeholder="13.5" value="{{ old('alcohol_porcentaje', $producto->alcohol_porcentaje) }}">
                                 <span class="unit">%</span>
                             </div>
                         </div>
                         <div class="detail-card">
                             <label for="contenido_ml">Contenido</label>
                             <div class="value-wrapper">
-                                <input type="number" name="contenido_ml" id="contenido_ml" placeholder="750" value="{{ old('contenido_ml') }}">
+                                <input type="number" name="contenido_ml" id="contenido_ml" placeholder="750" value="{{ old('contenido_ml', $producto->contenido_ml) }}">
                                 <span class="unit">ml</span>
                             </div>
                         </div>
                         <div class="detail-card">
-                            <label>Estado Inicial</label>
+                            <label>Estado Actual</label>
                             <div class="status-toggle">
                                 <label class="switch">
-                                    <input type="checkbox" name="estado" value="1" {{ old('estado', '1') == '1' ? 'checked' : '' }}>
+                                    <input type="checkbox" name="estado" value="1" {{ old('estado', $producto->estado) == '1' ? 'checked' : '' }}>
                                     <span class="slider"></span>
                                 </label>
                                 <span class="stock-unit">Activo</span>
@@ -130,7 +131,7 @@
                         <h2>Nota del Sommelier</h2>
                     </div>
                     <div class="note-area">
-                        <textarea name="descripcion" id="descripcion" rows="6" placeholder="Describe el carácter, bouquet y final de esta cosecha...">{{ old('descripcion') }}</textarea>
+                        <textarea name="descripcion" id="descripcion" rows="6" placeholder="Describe el carácter, bouquet y final de esta cosecha...">{{ old('descripcion', $producto->descripcion) }}</textarea>
                         <div class="note-badge">Voz Editorial</div>
                     </div>
                 </section>
@@ -146,20 +147,20 @@
                             <label for="precio">Precio Unitario</label>
                             <div class="valuation-input-wrapper">
                                 <span class="currency-symbol">$</span>
-                                <input type="number" step="0.01" name="precio" id="precio" class="large-input" placeholder="0.00" required value="{{ old('precio') }}">
+                                <input type="number" step="0.01" name="precio" id="precio" class="large-input" placeholder="0.00" required value="{{ old('precio', $producto->precio) }}">
                             </div>
                         </div>
                         <div class="valuation-item">
                             <label for="cantidad">Cantidad en Cava</label>
                             <div class="valuation-input-wrapper">
-                                <input type="number" name="cantidad" id="cantidad" class="large-input" placeholder="0" required value="{{ old('cantidad', 0) }}">
+                                <input type="number" name="cantidad" id="cantidad" class="large-input" placeholder="0" required value="{{ old('cantidad', $producto->cantidad) }}">
                                 <span class="stock-unit">Botellas</span>
                             </div>
                         </div>
                         <div class="valuation-item">
                             <label for="descuento">Descuento (%)</label>
                             <div class="valuation-input-wrapper">
-                                <input type="number" step="1" name="descuento" id="descuento" class="large-input" placeholder="0" value="{{ old('descuento', 0) }}">
+                                <input type="number" step="1" name="descuento" id="descuento" class="large-input" placeholder="0" value="{{ old('descuento', $producto->descuento) }}">
                                 <span class="stock-unit">% OFF</span>
                             </div>
                         </div>
@@ -172,25 +173,22 @@
                     <span class="section-num">05</span>
                     <h2>Identidad Visual</h2>
                 </div>
-                <div class="upload-box {{ old('imagen_url') ? 'has-image' : '' }}" id="image-container">
-                    @if(old('imagen_url'))
-                        <img src="{{ old('imagen_url') }}" class="preview-img active" id="product-preview" alt="Preview">
-                    @else
-                        <img src="" class="preview-img" id="product-preview" alt="Preview">
-                    @endif
+                @php $currentImg = old('imagen_url', $producto->imagen_url); @endphp
+                <div class="upload-box {{ $currentImg ? 'has-image' : '' }}" id="image-container">
+                    <img src="{{ $currentImg }}" class="preview-img {{ $currentImg ? 'active' : '' }}" id="product-preview" alt="Preview">
                     <img src="{{ asset('img/premium_wine_bottle_preview.png') }}" class="preview-bg" alt="Preview Background">
                     <div class="upload-content">
                         <div class="upload-icon-circle">
                             <span class="material-symbols-outlined">image_search</span>
                         </div>
                         <h3>Estética de la Botella</h3>
-                        <p>Sube una fotografía en alta resolución que capture la esencia de la etiqueta.</p>
+                        <p>Actualiza la fotografía que captura la esencia de la etiqueta.</p>
                     </div>
                 </div>
 
                 <div class="form-group" style="margin-top: 24px;">
                     <label for="imagen_url">URL de la Imagen Editorial</label>
-                    <input type="text" name="imagen_url" id="imagen_url" placeholder="https://ejemplo.com/imagen.jpg" class="url-input" value="{{ old('imagen_url') }}">
+                    <input type="text" name="imagen_url" id="imagen_url" placeholder="https://ejemplo.com/imagen.jpg" class="url-input" value="{{ old('imagen_url', $producto->imagen_url) }}">
                 </div>
 
                 <script>
@@ -216,7 +214,7 @@
                         Tip del Curador
                     </div>
                     <p class="tip-text">
-                        "Al catalogar vinos de alta gama, asegúrese de resaltar la región y la cosecha, ya que son factores críticos para la valoración del coleccionista."
+                        "Al actualizar registros, asegúrese de que el stock refleje el inventario físico real para evitar discrepancias en la bodega digital."
                     </p>
                 </div>
             </div>
