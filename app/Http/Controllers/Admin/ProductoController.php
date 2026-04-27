@@ -7,6 +7,7 @@ use App\Models\Producto;
 use App\Models\Categoria;
 use App\Models\Marca;
 use Illuminate\Http\Request;
+use Monarobase\CountryList\CountryList;
 
 class ProductoController extends Controller
 {
@@ -67,7 +68,9 @@ class ProductoController extends Controller
     {
         $categorias = Categoria::all();
         $marcas = Marca::all();
-        return view('admin.productos.create', compact('categorias', 'marcas'));
+        $countries = new CountryList();
+        $paises = $countries->getList('es');
+        return view('admin.productos.create', compact('categorias', 'marcas', 'paises'));
     }
 
     public function store(Request $request)
@@ -79,7 +82,10 @@ class ProductoController extends Controller
             'precio' => 'required|numeric',
         ]);
 
-        Producto::create($request->all());
+        $data = $request->all();
+        $data['estado'] = $request->has('estado') ? 1 : 0;
+        
+        Producto::create($data);
         return redirect()->route('admin.productos.index')->with('success', 'Producto creado con éxito.');
     }
 
@@ -87,7 +93,9 @@ class ProductoController extends Controller
     {
         $categorias = Categoria::all();
         $marcas = Marca::all();
-        return view('admin.productos.edit', compact('producto', 'categorias', 'marcas'));
+        $countries = new CountryList();
+        $paises = $countries->getList('es');
+        return view('admin.productos.edit', compact('producto', 'categorias', 'marcas', 'paises'));
     }
 
     public function update(Request $request, Producto $producto)
@@ -99,7 +107,10 @@ class ProductoController extends Controller
             'precio' => 'required|numeric',
         ]);
 
-        $producto->update($request->all());
+        $data = $request->all();
+        $data['estado'] = $request->has('estado') ? 1 : 0;
+        
+        $producto->update($data);
         return redirect()->route('admin.productos.index')->with('success', 'Producto actualizado con éxito.');
     }
 

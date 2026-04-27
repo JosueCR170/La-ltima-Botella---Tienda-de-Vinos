@@ -1,10 +1,26 @@
 @extends('layouts.admin')
 
+@push('styles')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@endpush
+
+@push('scripts')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.filter-select').select2({
+            width: '100%'
+        });
+    });
+</script>
+@endpush
+
 @section('content')
 <div class="index-view">
     <header class="index-header">
         <div class="header-info">
-            <h1>Inventario de Cava</h1>
+            <h1>Inventario de Productos</h1>
             <p>Gestiona la selección editorial de licores finos y vinos de cosecha.</p>
         </div>
         <div class="header-actions">
@@ -141,7 +157,7 @@
                         @endif
                     </td>
                     <td>
-                        <span class="price-text">₡{{ number_format($producto->precio, 2) }}</span>
+                        <span class="price-text">${{ number_format($producto->precio, 2) }}</span>
                     </td>
                     <td>
                         @if($producto->estado)

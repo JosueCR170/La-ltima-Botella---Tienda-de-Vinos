@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#fed7d0",
+                        "primary": "#2a0002",
+                        "secondary": "#745853",
+                        "inverse-surface": "#303221",
+                        "on-secondary-container": "#795c57",
+                        "primary-container": "#4a0e0e",
+                        "on-tertiary-fixed": "#241a00",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed-dim": "#e9c349",
+                        "tertiary-container": "#cca830",
+                        "primary-fixed": "#ffdad7",
+                        "tertiary-fixed": "#ffe088",
+                        "on-surface": "#1b1d0e",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#f2f2d9",
+                        "on-tertiary-container": "#4f3e00",
+                        "on-secondary-fixed": "#2b1613",
+                        "surface-container-highest": "#e4e4cc",
+                        "surface-variant": "#e4e4cc",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#ffb3ad",
+                        "on-primary-container": "#cc726d",
+                        "on-primary-fixed": "#3d0506",
+                        "surface-container-low": "#f5f5dc",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-background": "#1b1d0e",
+                        "surface-container-high": "#eaead1",
+                        "on-secondary-fixed-variant": "#5b403c",
+                        "on-error-container": "#93000a",
+                        "outline": "#877270",
+                        "surface-bright": "#fbfbe2",
+                        "surface-dim": "#dbdcc3",
+                        "on-primary-fixed-variant": "#77302d",
+                        "on-error": "#ffffff",
+                        "tertiary": "#735c00",
+                        "outline-variant": "#dac1bf",
+                        "on-surface-variant": "#544341",
+                        "surface-tint": "#954742",
+                        "surface-container": "#efefd7",
+                        "secondary-fixed-dim": "#e3beb8",
+                        "background": "#fbfbe2",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#ffdad4",
+                        "surface": "#fbfbe2",
+                        "inverse-primary": "#ffb3ad"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "display": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #fbfbe2;
+        }
+        h1, h2, h3, .serif {
+            font-family: 'Noto Serif', serif;
+        }
+        .backdrop-blur-curator {
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- Top Navigation Shell -->
+<nav class="fixed top-0 w-full z-50 bg-[#fbfbe2]/70 backdrop-blur-xl shadow-sm flex justify-between items-center px-12 py-6 w-full">
+<div class="text-2xl font-serif tracking-tighter text-[#2a0002]">The Editorial Cellar</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-stone-500 hover:text-stone-800 transition-colors duration-300 font-label" href="#">Collections</a>
+<a class="text-stone-500 hover:text-stone-800 transition-colors duration-300 font-label" href="#">Vineyards</a>
+<a class="text-stone-500 hover:text-stone-800 transition-colors duration-300 font-label" href="#">Tasting Notes</a>
+<a class="text-stone-500 hover:text-stone-800 transition-colors duration-300 font-label" href="#">Analytics</a>
+</div>
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">notifications</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer">settings</span>
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden">
+<img alt="Admin curator profile" data-alt="professional portrait of a sophisticated man in a dark tailored suit with soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9_elENJLTkMIDWh0tg3-toNAfyoEkxr8o5h5rTg7mcfx2sANfj4-X_ef4fRLNTvJNJ9xg0C1kJvH4k04-MEpKfeV-AfzM0TwLs1bZAEPIYEbFd20BayASTQDhkT1Kp8UGDXG2neqqGy4a4zjD8HknWCthRvwLViAV1eXI8pmk4JdOzXRo2Rq7HddXjgdIwfiDvpG2-0lxjEVGm9TTNl1K06PJiZLrG5BMMC9-Le_nN5KyidF_b7C-fHvW5xuvVc6VvXMktcoHTWpC"/>
+</div>
+</div>
+</nav>
+<!-- Side Navigation Shell -->
+<aside class="hidden lg:flex flex-col h-screen w-72 fixed left-0 top-0 py-10 bg-[#fbfbe2] z-40">
+<div class="px-8 mb-12">
+<div class="font-serif italic text-xl text-[#2a0002]">Cellar Admin</div>
+<div class="text-xs font-sans uppercase tracking-widest text-stone-500 mt-1">Curating Excellence</div>
+</div>
+<div class="flex flex-col flex-grow">
+<a class="flex items-center gap-4 text-stone-500 py-4 px-8 hover:text-stone-900 transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>Dashboard
+            </a>
+<a class="flex items-center gap-4 bg-[#e4e4cc] text-[#2a0002] rounded-r-full py-4 px-8 font-medium translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">wine_bar</span>Inventory
+            </a>
+<a class="flex items-center gap-4 text-stone-500 py-4 px-8 hover:text-stone-900 transition-all" href="#">
+<span class="material-symbols-outlined">auto_stories</span>Collections
+            </a>
+<a class="flex items-center gap-4 text-stone-500 py-4 px-8 hover:text-stone-900 transition-all" href="#">
+<span class="material-symbols-outlined">landscape</span>Vineyards
+            </a>
+<a class="flex items-center gap-4 text-stone-500 py-4 px-8 hover:text-stone-900 transition-all" href="#">
+<span class="material-symbols-outlined">description</span>Tasting Notes
+            </a>
+<a class="flex items-center gap-4 text-stone-500 py-4 px-8 hover:text-stone-900 transition-all" href="#">
+<span class="material-symbols-outlined">group</span>Customers
+            </a>
+</div>
+<div class="mt-auto px-8 py-4 space-y-4">
+<button class="w-full bg-primary text-on-primary py-3 px-4 rounded-md text-sm font-label tracking-widest uppercase hover:bg-primary-container transition-colors">
+                Add New Vintage
+            </button>
+<div class="pt-6 border-t border-[#dac1bf]/15">
+<a class="flex items-center gap-4 text-stone-500 py-2 hover:text-stone-900 text-sm" href="#">
+<span class="material-symbols-outlined text-lg">help</span>Help Center
+                </a>
+<a class="flex items-center gap-4 text-stone-500 py-2 hover:text-stone-900 text-sm" href="#">
+<span class="material-symbols-outlined text-lg">logout</span>Log Out
+                </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-0 lg:ml-72 pt-24 min-h-screen px-6 lg:px-12 pb-24">
+<!-- Header Section -->
+<header class="max-w-7xl mx-auto mb-16 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="space-y-2">
+<nav class="flex items-center gap-2 text-xs font-label uppercase tracking-widest text-secondary">
+<span>Inventory</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-on-surface">Château Margaux 2015</span>
+</nav>
+<h1 class="text-5xl font-display text-primary tracking-tight leading-tight">Editar Registro de Vino</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-8 py-3 text-secondary font-label text-sm uppercase tracking-widest border border-outline-variant/30 hover:bg-surface-container-low transition-all">
+                    Discard Changes
+                </button>
+<button class="px-8 py-3 bg-primary text-on-primary font-label text-sm uppercase tracking-widest hover:opacity-90 transition-all shadow-sm">
+                    Update Record
+                </button>
+</div>
+</header>
+<!-- Editor Layout (Asymmetric) -->
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Left Column: Visual & Analytics -->
+<div class="lg:col-span-5 space-y-12">
+<!-- Product Image Card -->
+<div class="relative group aspect-[3/4] bg-surface-container-low flex items-center justify-center overflow-hidden">
+<img alt="Château Margaux 2015 bottle" class="h-4/5 object-contain transition-transform duration-700 group-hover:scale-105" data-alt="a premium bottle of Chateau Margaux red wine standing against a soft parchment background with elegant minimal lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-vBjLKu02knOJT0gpCSFIc73wwR9zCrwMaKXxkBWq9A_MyvLXTKliemuVket-1fKzU6F2uPbL_xCa7PSEteNUGjB0HRJGUhV3EYtzd-FJJALa0bwGZNPYkEwfzqIEUsqc7Q41dWSNsp4JLdw2TsMcxXKeeLHewWFYtSPaY8tvRMpoVdw4_f4M3cB6EjTrblPlMGc8_1G8szon0xSRmUOH4oNWJ4KLudw9z6-hR48H8vGGiIVoGi3gPod_Ba1ZFWvpHMB5GPPHhb5u"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<button class="bg-surface-container-lowest px-6 py-3 font-label text-xs uppercase tracking-widest text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">photo_camera</span>
+                            Replace Visual
+                        </button>
+</div>
+<!-- Asymmetric Badge -->
+<div class="absolute top-8 left-8 bg-tertiary-fixed text-on-tertiary-fixed px-4 py-2 font-label text-xs uppercase tracking-widest shadow-lg">
+                        Grand Vin 2015
+                    </div>
+</div>
+<!-- Real-time Valuation Section -->
+<section class="bg-surface-container-highest p-10 space-y-8">
+<h3 class="text-xl font-display text-primary italic border-b border-outline-variant/20 pb-4">Valuation Metrics</h3>
+<div class="space-y-6">
+<div class="flex justify-between items-end">
+<div>
+<p class="text-xs font-label uppercase tracking-widest text-secondary mb-1">Market Value (Est.)</p>
+<p class="text-3xl font-display text-primary">€1,240.00</p>
+</div>
+<div class="text-right">
+<p class="text-xs font-label text-error font-bold flex items-center gap-1 justify-end">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                                    +4.2%
+                                </p>
+<p class="text-[10px] text-on-surface-variant font-label uppercase">Past 30 Days</p>
+</div>
+</div>
+<div class="h-16 w-full flex items-end gap-1 overflow-hidden">
+<!-- Simple custom bar chart for trend -->
+<div class="flex-1 bg-primary/10 h-[40%]"></div>
+<div class="flex-1 bg-primary/10 h-[45%]"></div>
+<div class="flex-1 bg-primary/20 h-[60%]"></div>
+<div class="flex-1 bg-primary/20 h-[55%]"></div>
+<div class="flex-1 bg-primary/30 h-[75%]"></div>
+<div class="flex-1 bg-primary/40 h-[90%]"></div>
+<div class="flex-1 bg-primary h-[100%]"></div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 bg-surface-container-low">
+<p class="text-[10px] font-label uppercase tracking-widest text-secondary">Rarity Index</p>
+<p class="text-lg font-display text-primary">High (9.2/10)</p>
+</div>
+<div class="p-4 bg-surface-container-low">
+<p class="text-[10px] font-label uppercase tracking-widest text-secondary">Liquidity</p>
+<p class="text-lg font-display text-primary">Tier 1</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Form Fields -->
+<div class="lg:col-span-7 space-y-12">
+<section class="space-y-10">
+<div class="space-y-6">
+<h3 class="text-2xl font-display text-primary">General Information</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+<!-- Minimalist Input Style -->
+<div class="space-y-2 group">
+<label class="text-[10px] font-label uppercase tracking-widest text-secondary">Product Name</label>
+<input class="w-full bg-transparent border-t-0 border-x-0 border-b border-outline-variant/20 focus:ring-0 focus:border-tertiary transition-colors py-2 font-display text-lg text-on-surface" type="text" value="Château Margaux 2015"/>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-label uppercase tracking-widest text-secondary">Vintage Year</label>
+<input class="w-full bg-transparent border-t-0 border-x-0 border-b border-outline-variant/20 focus:ring-0 focus:border-tertiary transition-colors py-2 font-display text-lg text-on-surface" type="number" value="2015"/>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-label uppercase tracking-widest text-secondary">Region / Appellation</label>
+<input class="w-full bg-transparent border-t-0 border-x-0 border-b border-outline-variant/20 focus:ring-0 focus:border-tertiary transition-colors py-2 font-display text-lg text-on-surface" type="text" value="Margaux, Bordeaux, France"/>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-label uppercase tracking-widest text-secondary">Varietal Composition</label>
+<input class="w-full bg-transparent border-t-0 border-x-0 border-b border-outline-variant/20 focus:ring-0 focus:border-tertiary transition-colors py-2 font-display text-lg text-on-surface" type="text" value="Cabernet Sauvignon, Merlot"/>
+</div>
+</div>
+</div>
+<div class="space-y-6 pt-6">
+<h3 class="text-2xl font-display text-primary">Technical Specs</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="space-y-2">
+<label class="text-[10px] font-label uppercase tracking-widest text-secondary">Alcohol By Volume</label>
+<div class="flex items-center gap-2 border-b border-outline-variant/20 py-2">
+<input class="w-full bg-transparent border-none focus:ring-0 font-body text-on-surface p-0" type="text" value="13.5"/>
+<span class="text-xs text-on-surface-variant">%</span>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-label uppercase tracking-widest text-secondary">Bottle Size</label>
+<select class="w-full bg-transparent border-t-0 border-x-0 border-b border-outline-variant/20 focus:ring-0 focus:border-tertiary transition-colors py-2 font-body text-on-surface">
+<option>750ml Standard</option>
+<option>1.5L Magnum</option>
+<option>375ml Half</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-label uppercase tracking-widest text-secondary">Closure Type</label>
+<select class="w-full bg-transparent border-t-0 border-x-0 border-b border-outline-variant/20 focus:ring-0 focus:border-tertiary transition-colors py-2 font-body text-on-surface">
+<option>Natural Cork</option>
+<option>Synthetic</option>
+<option>Screw Cap</option>
+</select>
+</div>
+</div>
+</div>
+<div class="space-y-6 pt-6">
+<h3 class="text-2xl font-display text-primary">Curator's Tasting Notes</h3>
+<div class="space-y-2">
+<label class="text-[10px] font-label uppercase tracking-widest text-secondary">Editorial Description</label>
+<textarea class="w-full bg-surface-container-low border-none focus:ring-1 focus:ring-tertiary p-6 font-body text-on-surface leading-relaxed" rows="6">The 2015 Château Margaux is an extraordinary wine, a fitting tribute to Paul Pontallier. It possesses a deep purple hue and an ethereal bouquet of violets, black cherries, and graphite. On the palate, it is full-bodied but weightless, showing perfect balance and silky tannins that lead to a finish of immense length. This is a vintage that defines the pinnacle of the Margaux terroir.</textarea>
+</div>
+</div>
+<div class="space-y-6 pt-6">
+<h3 class="text-2xl font-display text-primary">Collection &amp; Visibility</h3>
+<div class="flex flex-wrap gap-3">
+<div class="bg-primary text-on-primary px-4 py-2 rounded-full text-xs font-label flex items-center gap-2">
+                                Rare &amp; Iconic
+                                <span class="material-symbols-outlined text-sm">close</span>
+</div>
+<div class="bg-surface-container-high text-on-surface px-4 py-2 rounded-full text-xs font-label flex items-center gap-2">
+                                Bordeaux 2015 Selection
+                                <span class="material-symbols-outlined text-sm cursor-pointer">close</span>
+</div>
+<button class="border border-dashed border-outline-variant px-4 py-2 rounded-full text-xs font-label text-on-surface-variant flex items-center gap-2 hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-sm">add</span> Add Tag
+                            </button>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Footer Shell -->
+<footer class="w-full py-12 bg-[#fbfbe2] border-t border-[#dac1bf]/15 mt-24">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 max-w-7xl mx-auto gap-8">
+<div class="font-sans text-xs uppercase tracking-widest text-stone-500">
+                © 2024 The Editorial Cellar. All Rights Reserved. Crafted for the Digital Sommelier.
+            </div>
+<div class="flex gap-8">
+<a class="font-sans text-xs uppercase tracking-widest text-stone-400 hover:text-[#2a0002] transition-colors" href="#">Privacy Policy</a>
+<a class="font-sans text-xs uppercase tracking-widest text-stone-400 hover:text-[#2a0002] transition-colors" href="#">Terms of Service</a>
+<a class="font-sans text-xs uppercase tracking-widest text-stone-400 hover:text-[#2a0002] transition-colors" href="#">Inventory API</a>
+<a class="font-sans text-xs uppercase tracking-widest text-stone-400 hover:text-[#2a0002] transition-colors" href="#">Support</a>
+</div>
+</div>
+</footer>
+</body></html>

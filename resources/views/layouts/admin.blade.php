@@ -11,6 +11,8 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    
+    @stack('styles')
 </head>
 <body class="admin-body">
     <div class="admin-wrapper">
@@ -72,5 +74,7 @@
             </div>
         </main>
     </div>
+
+    @stack('scripts')
 </body>
 </html>
