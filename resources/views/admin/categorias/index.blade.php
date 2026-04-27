@@ -40,15 +40,12 @@
             <tbody>
                 @forelse($categorias as $categoria)
                 <tr class="{{ $categoria->nivel > 1 ? 'subcategory-row child-of-' . $categoria->nombre_padre : 'parent-row' }}" 
-                    style="{{ $categoria->nivel > 1 ? 'display: none;' : '' }}"
                     id="row-{{ $categoria->id_categoria }}">
                     <td>
                         <div class="product-cell">
                             <div class="product-name-info" style="display: flex; align-items: center; gap: 10px;">
                                 @if($categoria->nivel == 1)
-                                    <button class="toggle-btn" onclick="toggleSubcategories({{ $categoria->id_categoria }})" id="btn-{{ $categoria->id_categoria }}">
-                                        <span class="material-symbols-outlined">chevron_right</span>
-                                    </button>
+                                    <span class="material-symbols-outlined category-structure-icon">folder_open</span>
                                 @endif
                                 <div style="{{ $categoria->nivel > 1 ? 'padding-left: 40px;' : '' }}">
                                     <span class="product-name">
@@ -118,58 +115,4 @@
     </div>
 </div>
 
-<style>
-    .toggle-btn {
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 4px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--primary);
-        transition: transform 0.3s;
-        border-radius: 50%;
-    }
-    .toggle-btn:hover {
-        background-color: var(--surface-container-high);
-    }
-    .toggle-btn.active {
-        transform: rotate(90deg);
-    }
-    .subcategory-row {
-        background-color: rgba(245, 245, 220, 0.3);
-    }
-    .parent-row {
-        border-left: 4px solid transparent;
-        transition: border-left 0.3s;
-    }
-    .parent-row:hover {
-        border-left-color: var(--primary);
-    }
-</style>
-
-<script>
-    function toggleSubcategories(parentId) {
-        const children = document.querySelectorAll('.child-of-' + parentId);
-        const btn = document.getElementById('btn-' + parentId);
-        
-        children.forEach(child => {
-            if (child.style.display === 'none') {
-                child.style.display = 'table-row';
-                child.style.animation = 'fadeIn 0.3s ease-out';
-            } else {
-                child.style.display = 'none';
-            }
-        });
-        
-        btn.classList.toggle('active');
-    }
-
-    @if(request('search'))
-        // Si hay búsqueda, mostrar todo
-        document.querySelectorAll('.subcategory-row').forEach(row => row.style.display = 'table-row');
-        document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.add('active'));
-    @endif
-</script>
 @endsection

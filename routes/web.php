@@ -22,7 +22,7 @@ Route::get('/carrito', [\App\Http\Controllers\FrontendController::class, 'carrit
 Route::post('/carrito/eliminar/{id}', [\App\Http\Controllers\FrontendController::class, 'eliminarCarrito'])->name('carrito.remove');
 
 // Admin Routes
-Route::prefix('admindeVinos')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [\App\Http\Controllers\Admin\AdminController::class, 'index'])->name('dashboard');
     Route::resource('categorias', \App\Http\Controllers\Admin\CategoriaController::class);
     Route::resource('marcas', \App\Http\Controllers\Admin\MarcaController::class);

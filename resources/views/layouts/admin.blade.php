@@ -19,7 +19,7 @@
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-header">
-                <span class="brand-name">The Editorial Cellar</span>
+                <span class="brand-name">La Última Botella</span>
                 <div class="admin-profile">
                     <div class="profile-avatar">
                         <span class="material-symbols-outlined">person</span>

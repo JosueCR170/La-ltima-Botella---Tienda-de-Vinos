@@ -3,7 +3,7 @@
 @section('content')
     <div class="header">
         <h1>Dashboard Principal</h1>
-        <p>Bienvenido al panel de administración de The Editorial Cellar.</p>
+        <p>Bienvenido al panel de administración de La Última Botella.</p>
     </div>
 
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
