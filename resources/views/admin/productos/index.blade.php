@@ -1,20 +1,5 @@
 @extends('layouts.admin')
 
-@push('styles')
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-@endpush
-
-@push('scripts')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('.filter-select').select2({
-            width: '100%'
-        });
-    });
-</script>
-@endpush
 
 @section('content')
 <div class="index-view">
@@ -39,7 +24,7 @@
         </div>
 
         <div class="filter-group">
-            <select name="categoria" class="filter-select">
+            <select name="categoria" class="premium-select">
                 <option value="">Todas las Categorías</option>
                 @foreach($categorias as $categoria)
                     <option value="{{ $categoria->id_categoria }}" {{ request('categoria') == $categoria->id_categoria ? 'selected' : '' }}>
@@ -50,7 +35,7 @@
         </div>
 
         <div class="filter-group">
-            <select name="marca" class="filter-select">
+            <select name="marca" class="premium-select">
                 <option value="">Todas las Marcas</option>
                 @foreach($marcas as $marca)
                     <option value="{{ $marca->id_marca }}" {{ request('marca') == $marca->id_marca ? 'selected' : '' }}>
@@ -60,9 +45,18 @@
             </select>
         </div>
 
+        <div class="filter-group">
+            <input list="paises-list" name="pais" class="premium-datalist-input" placeholder="Buscar por país..." value="{{ request('pais') }}">
+            <datalist id="paises-list">
+                @foreach($paises as $code => $nombre)
+                    <option value="{{ $nombre }}"></option>
+                @endforeach
+            </datalist>
+        </div>
+
         <button type="submit" class="btn-filter">Filtrar</button>
         
-        @if(request()->anyFilled(['search', 'categoria', 'marca']))
+        @if(request()->anyFilled(['search', 'categoria', 'marca', 'pais']))
             <a href="{{ route('admin.productos.index') }}" class="btn-reset">Limpiar Filtros</a>
         @endif
     </form>

@@ -1,22 +1,5 @@
 @extends('layouts.admin')
 
-@push('styles')
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-@endpush
-
-@push('scripts')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#pais, #id_categoria, #id_marca').select2({
-            placeholder: "Seleccionar...",
-            allowClear: true,
-            width: '100%'
-        });
-    });
-</script>
-@endpush
 
 @section('content')
 <div class="create-view-wrapper">
@@ -54,12 +37,12 @@
                         </div>
                         <div class="form-group">
                             <label for="pais">País de Origen</label>
-                            <select name="pais" id="pais">
-                                <option value="" disabled>Seleccionar...</option>
+                            <input list="paises-list" name="pais" id="pais" class="premium-datalist-input" placeholder="Buscar país..." value="{{ old('pais', $producto->pais) }}">
+                            <datalist id="paises-list">
                                 @foreach($paises as $code => $nombre)
-                                    <option value="{{ $nombre }}" {{ old('pais', $producto->pais) == $nombre ? 'selected' : '' }}>{{ $nombre }}</option>
+                                    <option value="{{ $nombre }}"></option>
                                 @endforeach
-                            </select>
+                            </datalist>
                         </div>
                         <div class="form-group">
                             <label for="region">Región / Terroir</label>
@@ -67,7 +50,7 @@
                         </div>
                         <div class="form-group">
                             <label for="id_categoria">Categoría Editorial</label>
-                            <select name="id_categoria" id="id_categoria" required>
+                            <select name="id_categoria" id="id_categoria" class="premium-select" required>
                                 <option value="" disabled>Seleccionar...</option>
                                 @foreach($categorias as $categoria)
                                     <option value="{{ $categoria->id_categoria }}" {{ old('id_categoria', $producto->id_categoria) == $categoria->id_categoria ? 'selected' : '' }}>
@@ -78,7 +61,7 @@
                         </div>
                         <div class="form-group">
                             <label for="id_marca">Casa / Bodega</label>
-                            <select name="id_marca" id="id_marca" required>
+                            <select name="id_marca" id="id_marca" class="premium-select" required>
                                 <option value="" disabled>Seleccionar...</option>
                                 @foreach($marcas as $marca)
                                     <option value="{{ $marca->id_marca }}" {{ old('id_marca', $producto->id_marca) == $marca->id_marca ? 'selected' : '' }}>
@@ -191,22 +174,6 @@
                     <input type="text" name="imagen_url" id="imagen_url" placeholder="https://ejemplo.com/imagen.jpg" class="url-input" value="{{ old('imagen_url', $producto->imagen_url) }}">
                 </div>
 
-                <script>
-                    document.getElementById('imagen_url').addEventListener('input', function() {
-                        const url = this.value;
-                        const preview = document.getElementById('product-preview');
-                        const container = document.getElementById('image-container');
-                        if (url) {
-                            preview.src = url;
-                            preview.classList.add('active');
-                            container.classList.add('has-image');
-                        } else {
-                            preview.src = '';
-                            preview.classList.remove('active');
-                            container.classList.remove('has-image');
-                        }
-                    });
-                </script>
 
                 <div class="curator-tip">
                     <div class="tip-header">

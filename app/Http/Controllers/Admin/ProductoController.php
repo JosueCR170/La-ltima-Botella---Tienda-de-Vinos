@@ -34,6 +34,11 @@ class ProductoController extends Controller
             $query->where('id_marca', $request->marca);
         }
 
+        // Filtro por país
+        if ($request->has('pais') && !empty($request->pais)) {
+            $query->where('pais', $request->pais);
+        }
+
         // Ordenamiento
         $sort = $request->get('sort', 'id_producto');
         $direction = $request->get('direction', 'desc');
@@ -60,8 +65,10 @@ class ProductoController extends Controller
         
         $categorias = Categoria::all();
         $marcas = Marca::all();
+        $countries = new CountryList();
+        $paises = $countries->getList('es');
 
-        return view('admin.productos.index', compact('productos', 'categorias', 'marcas'));
+        return view('admin.productos.index', compact('productos', 'categorias', 'marcas', 'paises'));
     }
 
     public function create()

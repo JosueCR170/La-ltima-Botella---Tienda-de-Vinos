@@ -1,22 +1,5 @@
 @extends('layouts.admin')
 
-@push('styles')
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-@endpush
-
-@push('scripts')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#pais').select2({
-            placeholder: "Seleccionar país...",
-            allowClear: true,
-            width: '100%'
-        });
-    });
-</script>
-@endpush
 
 @section('content')
 <div class="create-view-wrapper">
@@ -49,12 +32,12 @@
                         </div>
                         <div class="form-group">
                             <label for="pais">País de Origen</label>
-                            <select name="pais" id="pais" required>
-                                <option value="" disabled>Seleccionar...</option>
+                            <input list="paises-list" name="pais" id="pais" class="premium-datalist-input" placeholder="Buscar país..." value="{{ old('pais', $marca->pais) }}">
+                            <datalist id="paises-list">
                                 @foreach($paises as $code => $nombre)
-                                    <option value="{{ $nombre }}" {{ old('pais', $marca->pais) == $nombre ? 'selected' : '' }}>{{ $nombre }}</option>
+                                    <option value="{{ $nombre }}"></option>
                                 @endforeach
-                            </select>
+                            </datalist>
                         </div>
                         <div class="form-group">
                             <label for="sitio_web">Sitio Web Oficial</label>

@@ -31,7 +31,7 @@
                         </div>
                         <div class="form-group">
                             <label for="nivel">Nivel Jerárquico</label>
-                            <select name="nivel_display" id="nivel_display" required disabled>
+                            <select name="nivel_display" id="nivel_display" class="premium-select" required disabled>
                                 <option value="1" {{ old('nivel', $categoria->nivel) == 1 ? 'selected' : '' }}>Nivel 1 (Principal)</option>
                                 <option value="2" {{ old('nivel', $categoria->nivel) == 2 ? 'selected' : '' }}>Nivel 2 (Subcategoría)</option>
                             </select>
@@ -40,12 +40,12 @@
                         <div class="form-group">
                             <label for="nombre_padre">Categoría Padre (Si aplica)</label>
                             @if($categoria->nivel == 1)
-                                <select name="nombre_padre_display" id="nombre_padre_display" disabled>
+                                <select name="nombre_padre_display" id="nombre_padre_display" class="premium-select" disabled>
                                     <option value="">Ninguna (Raíz)</option>
                                 </select>
                                 <input type="hidden" name="nombre_padre" value="">
                             @else
-                                <select name="nombre_padre" id="nombre_padre" required>
+                                <select name="nombre_padre" id="nombre_padre" class="premium-select" required>
                                     <option value="" disabled>Seleccione una categoría superior</option>
                                     @foreach($categoriasPadre as $padre)
                                         @if($padre->id_categoria != $categoria->id_categoria)

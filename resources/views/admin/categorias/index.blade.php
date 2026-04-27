@@ -54,7 +54,7 @@
                                         @endif
                                         {{ $categoria->nombre }}
                                     </span>
-                                    <span class="product-meta">{{ Str::limit($categoria->descripcion, 50) }}</span>
+                                    <!-- <span class="product-meta">{{ Str::limit($categoria->descripcion, 50) }}</span> -->
                                 </div>
                             </div>
                         </div>

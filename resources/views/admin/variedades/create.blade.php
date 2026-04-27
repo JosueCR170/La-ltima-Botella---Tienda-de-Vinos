@@ -30,7 +30,7 @@
                         </div>
                         <div class="form-group">
                             <label for="tipo">Tipo de Uva</label>
-                            <select name="tipo" id="tipo" required>
+                            <select name="tipo" id="tipo" class="premium-select" required>
                                 <option value="" disabled selected>Seleccionar...</option>
                                 <option value="Tinta" {{ old('tipo') == 'Tinta' ? 'selected' : '' }}>Tinta</option>
                                 <option value="Blanca" {{ old('tipo') == 'Blanca' ? 'selected' : '' }}>Blanca</option>

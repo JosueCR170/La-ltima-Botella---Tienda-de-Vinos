@@ -16,7 +16,11 @@ class MarcaController extends Controller
         if ($request->has('search') && !empty($request->search)) {
             $searchTerm = '%' . $request->search . '%';
             $query->where('nombre', 'like', $searchTerm)
-                  ->orWhere('pais', 'like', $searchTerm);
+                  ->orWhere('descripcion', 'like', $searchTerm);
+        }
+
+        if ($request->has('pais') && !empty($request->pais)) {
+            $query->where('pais', $request->pais);
         }
 
         $sort = $request->get('sort', 'id_marca');
@@ -30,7 +34,11 @@ class MarcaController extends Controller
         }
 
         $marcas = $query->paginate(10)->withQueryString();
-        return view('admin.marcas.index', compact('marcas'));
+
+        $countries = new CountryList();
+        $paises = $countries->getList('es');
+
+        return view('admin.marcas.index', compact('marcas', 'paises'));
     }
 
     public function create()
