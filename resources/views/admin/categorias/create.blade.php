@@ -28,23 +28,34 @@
                             <label for="nombre">Nombre de la Categoría</label>
                             <input type="text" name="nombre" id="nombre" placeholder="ej. Tintos de Guarda" required value="{{ old('nombre') }}">
                         </div>
+                        @php
+                            $nivelActual = old('nivel', $request->get('nivel', 1));
+                        @endphp
                         <div class="form-group">
                             <label for="nivel">Nivel Jerárquico</label>
-                            <select name="nivel" id="nivel" required>
-                                <option value="1" {{ old('nivel', $request->get('nivel')) == 1 ? 'selected' : '' }}>Nivel 1 (Principal)</option>
-                                <option value="2" {{ old('nivel', $request->get('nivel')) == 2 ? 'selected' : '' }}>Nivel 2 (Subcategoría)</option>
+                            <select name="nivel_display" id="nivel_display" required disabled>
+                                <option value="1" {{ $nivelActual == 1 ? 'selected' : '' }}>Nivel 1 (Principal)</option>
+                                <option value="2" {{ $nivelActual == 2 ? 'selected' : '' }}>Nivel 2 (Subcategoría)</option>
                             </select>
+                            <input type="hidden" name="nivel" value="{{ $nivelActual }}">
                         </div>
                         <div class="form-group">
                             <label for="nombre_padre">Categoría Padre (Si aplica)</label>
-                            <select name="nombre_padre" id="nombre_padre">
-                                <option value="">Ninguna (Raíz)</option>
-                                @foreach($categoriasPadre as $padre)
-                                    <option value="{{ $padre->id_categoria }}" {{ old('nombre_padre', $request->get('parent_id')) == $padre->id_categoria ? 'selected' : '' }}>
-                                        {{ $padre->nombre }}
-                                    </option>
-                                @endforeach
-                            </select>
+                            @if($nivelActual == 1)
+                                <select name="nombre_padre_display" id="nombre_padre_display" disabled>
+                                    <option value="">Ninguna (Raíz)</option>
+                                </select>
+                                <input type="hidden" name="nombre_padre" value="">
+                            @else
+                                <select name="nombre_padre" id="nombre_padre" required>
+                                    <option value="" disabled>Seleccione una categoría superior</option>
+                                    @foreach($categoriasPadre as $padre)
+                                        <option value="{{ $padre->id_categoria }}" {{ old('nombre_padre', $request->get('parent_id')) == $padre->id_categoria ? 'selected' : '' }}>
+                                            {{ $padre->nombre }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            @endif
                         </div>
                     </div>
                 </section>

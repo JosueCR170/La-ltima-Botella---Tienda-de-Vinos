@@ -63,8 +63,8 @@
                         </div>
                     </td>
                     <td>
-                        <span class="badge {{ $categoria->nivel == 1 ? 'badge-success' : 'badge-neutral' }}">
-                            Nivel {{ $categoria->nivel }}
+                        <span class="badge {{ $categoria->nivel == 1 ? 'badge-success' : 'badge-subcategory' }}">
+                            {{ $categoria->nivel == 1 ? 'Principal' : 'Subnivel' }}
                         </span>
                     </td>
                     <td>

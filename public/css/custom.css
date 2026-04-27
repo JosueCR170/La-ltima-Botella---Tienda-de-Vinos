@@ -344,6 +344,8 @@ body.admin-body {
 
 .badge-success { background-color: var(--tertiary-fixed); color: #241a00; }
 .badge-error { background-color: var(--error-container); color: #93000a; }
+.badge-subcategory { background-color: var(--surface-variant); color: var(--primary); border: 1px solid var(--outline-variant); }
+.badge-neutral { background-color: var(--surface-container-high); color: var(--on-surface-variant); }
 
 .actions-cell {
     text-align: right;

@@ -31,23 +31,31 @@
                         </div>
                         <div class="form-group">
                             <label for="nivel">Nivel Jerárquico</label>
-                            <select name="nivel" id="nivel" required>
+                            <select name="nivel_display" id="nivel_display" required disabled>
                                 <option value="1" {{ old('nivel', $categoria->nivel) == 1 ? 'selected' : '' }}>Nivel 1 (Principal)</option>
                                 <option value="2" {{ old('nivel', $categoria->nivel) == 2 ? 'selected' : '' }}>Nivel 2 (Subcategoría)</option>
                             </select>
+                            <input type="hidden" name="nivel" value="{{ $categoria->nivel }}">
                         </div>
                         <div class="form-group">
                             <label for="nombre_padre">Categoría Padre (Si aplica)</label>
-                            <select name="nombre_padre" id="nombre_padre">
-                                <option value="">Ninguna (Raíz)</option>
-                                @foreach($categoriasPadre as $padre)
-                                    @if($padre->id_categoria != $categoria->id_categoria)
-                                        <option value="{{ $padre->id_categoria }}" {{ old('nombre_padre', $categoria->nombre_padre) == $padre->id_categoria ? 'selected' : '' }}>
-                                            {{ $padre->nombre }}
-                                        </option>
-                                    @endif
-                                @endforeach
-                            </select>
+                            @if($categoria->nivel == 1)
+                                <select name="nombre_padre_display" id="nombre_padre_display" disabled>
+                                    <option value="">Ninguna (Raíz)</option>
+                                </select>
+                                <input type="hidden" name="nombre_padre" value="">
+                            @else
+                                <select name="nombre_padre" id="nombre_padre" required>
+                                    <option value="" disabled>Seleccione una categoría superior</option>
+                                    @foreach($categoriasPadre as $padre)
+                                        @if($padre->id_categoria != $categoria->id_categoria)
+                                            <option value="{{ $padre->id_categoria }}" {{ old('nombre_padre', $categoria->nombre_padre) == $padre->id_categoria ? 'selected' : '' }}>
+                                                {{ $padre->nombre }}
+                                            </option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            @endif
                         </div>
                     </div>
                 </section>
