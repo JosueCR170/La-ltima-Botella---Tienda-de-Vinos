@@ -13,7 +13,7 @@ class ProductoController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Producto::with(['categoria', 'marca']);
+        $query = Producto::with(['categoria.padre', 'marca']);
 
         // Búsqueda por nombre o descripción
         if ($request->has('search') && !empty($request->search)) {

@@ -8,9 +8,27 @@ use Illuminate\Http\Request;
 
 class VariedadController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $variedades = Variedad::all();
+        $query = Variedad::query();
+
+        if ($request->has('search') && !empty($request->search)) {
+            $searchTerm = '%' . $request->search . '%';
+            $query->where('nombre', 'like', $searchTerm)
+                  ->orWhere('tipo', 'like', $searchTerm);
+        }
+
+        $sort = $request->get('sort', 'id_variedad');
+        $direction = $request->get('direction', 'desc');
+        $allowedSorts = ['nombre', 'tipo', 'id_variedad'];
+        
+        if (in_array($sort, $allowedSorts)) {
+            $query->orderBy($sort, $direction);
+        } else {
+            $query->orderBy('id_variedad', 'desc');
+        }
+
+        $variedades = $query->paginate(10)->withQueryString();
         return view('admin.variedades.index', compact('variedades'));
     }
 
@@ -22,25 +40,29 @@ class VariedadController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required|max:100',
+            'nombre' => 'required|max:100|unique:variedades,nombre',
+            'tipo' => 'required',
         ]);
 
         Variedad::create($request->all());
         return redirect()->route('admin.variedades.index')->with('success', 'Variedad creada con éxito.');
     }
 
-    public function edit(Variedad $variedade)
+    public function edit(Variedad $variedade) // Note: Laravel uses 'variedade' as singular for 'variedades' resource
     {
-        return view('admin.variedades.edit', compact('variedade'));
+        $variedad = $variedade;
+        return view('admin.variedades.edit', compact('variedad'));
     }
 
     public function update(Request $request, Variedad $variedade)
     {
+        $variedad = $variedade;
         $request->validate([
-            'nombre' => 'required|max:100',
+            'nombre' => 'required|max:100|unique:variedades,nombre,' . $variedad->id_variedad . ',id_variedad',
+            'tipo' => 'required',
         ]);
 
-        $variedade->update($request->all());
+        $variedad->update($request->all());
         return redirect()->route('admin.variedades.index')->with('success', 'Variedad actualizada con éxito.');
     }
 

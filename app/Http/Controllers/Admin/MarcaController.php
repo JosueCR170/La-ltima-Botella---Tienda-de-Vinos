@@ -5,24 +5,46 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Marca;
 use Illuminate\Http\Request;
+use Monarobase\CountryList\CountryList;
 
 class MarcaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $marcas = Marca::all();
+        $query = Marca::query();
+
+        if ($request->has('search') && !empty($request->search)) {
+            $searchTerm = '%' . $request->search . '%';
+            $query->where('nombre', 'like', $searchTerm)
+                  ->orWhere('pais', 'like', $searchTerm);
+        }
+
+        $sort = $request->get('sort', 'id_marca');
+        $direction = $request->get('direction', 'desc');
+        $allowedSorts = ['nombre', 'pais', 'id_marca'];
+        
+        if (in_array($sort, $allowedSorts)) {
+            $query->orderBy($sort, $direction);
+        } else {
+            $query->orderBy('id_marca', 'desc');
+        }
+
+        $marcas = $query->paginate(10)->withQueryString();
         return view('admin.marcas.index', compact('marcas'));
     }
 
     public function create()
     {
-        return view('admin.marcas.create');
+        $countries = new CountryList();
+        $paises = $countries->getList('es');
+        return view('admin.marcas.create', compact('paises'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required|max:150',
+            'nombre' => 'required|max:100|unique:marcas,nombre',
+            'pais' => 'required',
         ]);
 
         Marca::create($request->all());
@@ -31,13 +53,16 @@ class MarcaController extends Controller
 
     public function edit(Marca $marca)
     {
-        return view('admin.marcas.edit', compact('marca'));
+        $countries = new CountryList();
+        $paises = $countries->getList('es');
+        return view('admin.marcas.edit', compact('marca', 'paises'));
     }
 
     public function update(Request $request, Marca $marca)
     {
         $request->validate([
-            'nombre' => 'required|max:150',
+            'nombre' => 'required|max:100|unique:marcas,nombre,' . $marca->id_marca . ',id_marca',
+            'pais' => 'required',
         ]);
 
         $marca->update($request->all());

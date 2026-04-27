@@ -8,23 +8,33 @@ use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $categorias = Categoria::with('padre')->get();
+        $query = Categoria::with('padre');
+
+        if ($request->has('search') && !empty($request->search)) {
+            $searchTerm = '%' . $request->search . '%';
+            $query->where('nombre', 'like', $searchTerm)
+                  ->orWhere('descripcion', 'like', $searchTerm);
+        }
+
+        $query->orderByRaw('CASE WHEN nombre_padre IS NULL THEN id_categoria ELSE nombre_padre END ASC')
+              ->orderBy('nivel', 'asc');
+
+        $categorias = $query->get();
         return view('admin.categorias.index', compact('categorias'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        $categorias = Categoria::all();
-        return view('admin.categorias.create', compact('categorias'));
+        $categoriasPadre = Categoria::where('nivel', 1)->get();
+        return view('admin.categorias.create', compact('categoriasPadre', 'request'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required|max:100',
-            'nombre_padre' => 'nullable|exists:categorias,id_categoria',
+            'nombre' => 'required|max:100|unique:categorias,nombre',
             'nivel' => 'required|integer',
         ]);
 
@@ -34,15 +44,14 @@ class CategoriaController extends Controller
 
     public function edit(Categoria $categoria)
     {
-        $categorias = Categoria::where('id_categoria', '!=', $categoria->id_categoria)->get();
-        return view('admin.categorias.edit', compact('categoria', 'categorias'));
+        $categoriasPadre = Categoria::where('nivel', 1)->get();
+        return view('admin.categorias.edit', compact('categoria', 'categoriasPadre'));
     }
 
     public function update(Request $request, Categoria $categoria)
     {
         $request->validate([
-            'nombre' => 'required|max:100',
-            'nombre_padre' => 'nullable|exists:categorias,id_categoria',
+            'nombre' => 'required|max:100|unique:categorias,nombre,' . $categoria->id_categoria . ',id_categoria',
             'nivel' => 'required|integer',
         ]);
 

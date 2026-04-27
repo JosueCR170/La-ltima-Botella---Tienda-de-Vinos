@@ -145,7 +145,14 @@
                     </td>
                     <td>
                         <div class="category-cell">
-                            <span class="category-name">{{ $producto->categoria ? $producto->categoria->nombre : 'Sin Categoría' }}</span>
+                            <span class="category-name">
+                                @if($producto->categoria && $producto->categoria->padre)
+                                    <small style="opacity: 0.5; font-size: 0.7rem; display: block;">{{ $producto->categoria->padre->nombre }}</small>
+                                    {{ $producto->categoria->nombre }}
+                                @else
+                                    {{ $producto->categoria ? $producto->categoria->nombre : 'Sin Categoría' }}
+                                @endif
+                            </span>
                             <span class="brand-name-sm">{{ $producto->marca ? $producto->marca->nombre : 'Sin Marca' }}</span>
                         </div>
                     </td>
