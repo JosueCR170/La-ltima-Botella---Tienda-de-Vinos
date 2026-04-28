@@ -158,13 +158,13 @@
         <article class="flex flex-col space-y-4 group">
             <div class="relative">
                 <a href="{{ route('producto.show', $producto->id_producto) }}" class="block">
-                    <div class="aspect-[4/5] bg-surface-container overflow-hidden rounded-lg relative">
+                    <div class="aspect-[3/4] bg-surface-container-low overflow-hidden rounded-lg relative p-6 flex items-center justify-center">
                         @if($producto->imagen_url)
                             <img alt="{{ $producto->nombre }}"
-                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                 class="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-700"
                                  src="{{ $producto->imagen_url }}"/>
                         @else
-                            <div class="w-full h-full flex items-center justify-center bg-surface-container-highest">
+                            <div class="w-full h-full flex items-center justify-center">
                                 <span class="material-symbols-outlined text-7xl text-outline-variant/30">wine_bar</span>
                             </div>
                         @endif

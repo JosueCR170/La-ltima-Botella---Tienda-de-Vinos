@@ -17,13 +17,13 @@
 
         <!-- Left: Image -->
         <div class="lg:col-span-5 relative">
-            <div class="bg-surface-container-low rounded-lg p-12 lg:sticky lg:top-32 shadow-[0_20px_40px_-10px_rgba(27,29,14,0.06)]">
+            <div class="bg-surface-container-low rounded-lg p-12 lg:sticky lg:top-32 shadow-[0_20px_40px_-10px_rgba(27,29,14,0.06)] aspect-[3/4] flex items-center justify-center">
                 @if($producto->imagen_url)
                     <img alt="{{ $producto->nombre }}"
-                         class="w-full h-auto object-contain transform hover:scale-105 transition-transform duration-700"
+                         class="max-w-full max-h-full object-contain transform hover:scale-105 transition-transform duration-700"
                          src="{{ $producto->imagen_url }}"/>
                 @else
-                    <div class="aspect-[3/4] flex items-center justify-center bg-surface-container-highest rounded-lg">
+                    <div class="flex items-center justify-center">
                         <span class="material-symbols-outlined text-9xl text-outline-variant/30">wine_bar</span>
                     </div>
                 @endif

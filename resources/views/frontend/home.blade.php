@@ -18,21 +18,21 @@
             </a>
         </div>
         <div class="lg:col-span-6 relative">
-            <div class="aspect-[4/5] bg-surface-container-high rounded-lg overflow-hidden shadow-xl transform lg:translate-x-12 lg:rotate-2">
+            <div class="aspect-[3/4] bg-surface-container-low rounded-lg overflow-hidden shadow-xl transform lg:translate-x-12 lg:rotate-2 flex items-center justify-center p-8">
                 @if($productosDestacados->isNotEmpty() && $productosDestacados->first()->imagen_url)
-                    <img alt="{{ $productosDestacados->first()->nombre }}" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000" src="{{ $productosDestacados->first()->imagen_url }}"/>
+                    <img alt="{{ $productosDestacados->first()->nombre }}" class="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-1000" src="{{ $productosDestacados->first()->imagen_url }}"/>
                 @else
-                    <div class="w-full h-full bg-surface-container-highest flex items-center justify-center">
+                    <div class="w-full h-full flex items-center justify-center">
                         <span class="material-symbols-outlined text-7xl text-outline-variant/30">wine_bar</span>
                     </div>
                 @endif
             </div>
             @if($productosDestacados->count() > 1)
-            <div class="absolute -bottom-10 -left-10 w-64 h-80 hidden lg:block bg-surface-container-low p-4 rounded-md shadow-lg transform -rotate-6 overflow-hidden">
+            <div class="absolute -bottom-10 -left-10 w-64 h-80 hidden lg:block bg-surface-container-low p-6 rounded-md shadow-lg transform -rotate-6 overflow-hidden flex items-center justify-center">
                 @if($productosDestacados[1]->imagen_url)
-                    <img alt="{{ $productosDestacados[1]->nombre }}" class="w-full h-full object-cover" src="{{ $productosDestacados[1]->imagen_url }}"/>
+                    <img alt="{{ $productosDestacados[1]->nombre }}" class="max-w-full max-h-full object-contain" src="{{ $productosDestacados[1]->imagen_url }}"/>
                 @else
-                    <div class="w-full h-full bg-surface-container-high flex items-center justify-center">
+                    <div class="w-full h-full flex items-center justify-center">
                         <span class="material-symbols-outlined text-5xl text-outline-variant/30">wine_bar</span>
                     </div>
                 @endif
@@ -60,10 +60,10 @@
                 <a href="{{ route('producto.show', $producto->id_producto) }}"
                    class="group bg-surface p-8 rounded-md transition-all hover:shadow-2xl hover:-translate-y-2 block
                           {{ $index === 1 ? 'lg:translate-y-12' : '' }}">
-                    <div class="aspect-[3/4] mb-8 overflow-hidden rounded-sm bg-surface-container-highest">
+                    <div class="aspect-[3/4] mb-8 overflow-hidden rounded-sm bg-surface-container-low p-6 flex items-center justify-center">
                         @if($producto->imagen_url)
                             <img alt="{{ $producto->nombre }}"
-                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                 class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700"
                                  src="{{ $producto->imagen_url }}"/>
                         @else
                             <div class="w-full h-full flex items-center justify-center">
@@ -105,10 +105,10 @@
                 @foreach($productosDescuento as $producto)
                 <a href="{{ route('producto.show', $producto->id_producto) }}"
                    class="group bg-surface p-8 rounded-md transition-all hover:shadow-2xl hover:-translate-y-2 block">
-                    <div class="aspect-[3/4] mb-8 overflow-hidden rounded-sm bg-surface-container-highest relative">
+                    <div class="aspect-[3/4] mb-8 overflow-hidden rounded-sm bg-surface-container-low p-6 flex items-center justify-center relative">
                         @if($producto->imagen_url)
                             <img alt="{{ $producto->nombre }}"
-                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                                 class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700"
                                  src="{{ $producto->imagen_url }}"/>
                         @else
                             <div class="w-full h-full flex items-center justify-center">
@@ -152,13 +152,13 @@
             </div>
             <div class="grid grid-cols-2 gap-6">
                 @foreach($productosDestacados->take(2) as $p)
-                    @if($p->imagen_url)
-                        <img alt="{{ $p->nombre }}" class="rounded-md h-96 w-full object-cover {{ $loop->index === 1 ? 'translate-y-12' : '' }}" src="{{ $p->imagen_url }}"/>
-                    @else
-                        <div class="rounded-md h-96 w-full bg-surface-container-highest flex items-center justify-center {{ $loop->index === 1 ? 'translate-y-12' : '' }}">
+                    <div class="rounded-md aspect-[3/4] bg-surface-container-low p-6 flex items-center justify-center {{ $loop->index === 1 ? 'translate-y-12' : '' }}">
+                        @if($p->imagen_url)
+                            <img alt="{{ $p->nombre }}" class="max-w-full max-h-full object-contain" src="{{ $p->imagen_url }}"/>
+                        @else
                             <span class="material-symbols-outlined text-7xl text-outline-variant/30">wine_bar</span>
-                        </div>
-                    @endif
+                        @endif
+                    </div>
                 @endforeach
             </div>
         </div>
