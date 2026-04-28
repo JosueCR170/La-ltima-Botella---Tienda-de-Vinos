@@ -23,7 +23,7 @@ class StaticDataSeeder extends Seeder
                 "Descripcion" => "Blend de Malbec y Cabernet Sauvignon, cereza negra, tabaco y taninos sedosos",
                 "Cantidad" => 100,
                 "Categoria" => "Vinos",
-                "Subcategoria" => "Vino Tinto",
+                "Subcategoria" => "Tinto",
                 "Marca" => "Achaval Ferrer",
                 "Pais" => "Argentina",
                 "Region" => "Mendoza",
@@ -41,7 +41,7 @@ class StaticDataSeeder extends Seeder
                 "Descripcion" => "Vino tinto iconico, notas de mora, violetas y especias con final largo",
                 "Cantidad" => 50,
                 "Categoria" => "Vinos",
-                "Subcategoria" => "Vino Tinto",
+                "Subcategoria" => "Tinto",
                 "Marca" => "Catena Zapata",
                 "Pais" => "Argentina",
                 "Region" => "Mendoza",
@@ -59,7 +59,7 @@ class StaticDataSeeder extends Seeder
                 "Descripcion" => "Chardonnay de gran altitud, mineralidad y citricos con barrica elegante",
                 "Cantidad" => 100,
                 "Categoria" => "Vinos",
-                "Subcategoria" => "Vino Blanco",
+                "Subcategoria" => "Blanco",
                 "Marca" => "Catena Zapata",
                 "Pais" => "Argentina",
                 "Region" => "Mendoza",
@@ -77,7 +77,7 @@ class StaticDataSeeder extends Seeder
                 "Descripcion" => "Gran vino de Burdeos, cassis, cedro y tierra humeda, muy largo",
                 "Cantidad" => 100,
                 "Categoria" => "Vinos",
-                "Subcategoria" => "Vino Tinto",
+                "Subcategoria" => "Tinto",
                 "Marca" => "Chateau Mouton Rothschild",
                 "Pais" => "Francia",
                 "Region" => "Pauillac",
@@ -95,7 +95,7 @@ class StaticDataSeeder extends Seeder
                 "Descripcion" => "Referencia mundial de NZ: maracuya, pomelo y hierba fresca intensa",
                 "Cantidad" => 80,
                 "Categoria" => "Vinos",
-                "Subcategoria" => "Vino Blanco",
+                "Subcategoria" => "Blanco",
                 "Marca" => "Cloudy Bay",
                 "Pais" => "Nueva Zelanda",
                 "Region" => "Marlborough",
@@ -113,7 +113,7 @@ class StaticDataSeeder extends Seeder
                 "Descripcion" => "Chardonnay premium, mantequilla, durazno y vainilla con acidez fresca",
                 "Cantidad" => 50,
                 "Categoria" => "Vinos",
-                "Subcategoria" => "Vino Blanco",
+                "Subcategoria" => "Blanco",
                 "Marca" => "Concha y Toro",
                 "Pais" => "Chile",
                 "Region" => "Valle de Casablanca",
@@ -131,7 +131,7 @@ class StaticDataSeeder extends Seeder
                 "Descripcion" => "Vino emblematico chileno, moras negras, cedro y tabaco, taninos firmes",
                 "Cantidad" => 40,
                 "Categoria" => "Vinos",
-                "Subcategoria" => "Vino Tinto",
+                "Subcategoria" => "Tinto",
                 "Marca" => "Concha y Toro",
                 "Pais" => "Chile",
                 "Region" => "Valle del Maipo",
@@ -167,7 +167,7 @@ class StaticDataSeeder extends Seeder
                 "Descripcion" => "Vino blanco de guarda, pera y almendras con crianza en altura",
                 "Cantidad" => 80,
                 "Categoria" => "Vinos",
-                "Subcategoria" => "Vino Blanco",
+                "Subcategoria" => "Blanco",
                 "Marca" => "Zuccardi",
                 "Pais" => "Argentina",
                 "Region" => "Valle de Uco",
@@ -257,7 +257,7 @@ class StaticDataSeeder extends Seeder
                 "Descripcion" => "Riesling alsaciano ligero, citricos, flores blancas y mineralidad tipica",
                 "Cantidad" => 50,
                 "Categoria" => "Vinos",
-                "Subcategoria" => "Vino Blanco",
+                "Subcategoria" => "Blanco",
                 "Marca" => "Hugel",
                 "Pais" => "Francia",
                 "Region" => "Alsacia",
@@ -329,7 +329,7 @@ class StaticDataSeeder extends Seeder
                 "Descripcion" => "Tempranillo con vainilla, cereza y notas de roble americano, elegante",
                 "Cantidad" => 30,
                 "Categoria" => "Vinos",
-                "Subcategoria" => "Vino Tinto",
+                "Subcategoria" => "Tinto",
                 "Marca" => "Marques de Caceres",
                 "Pais" => "Espana",
                 "Region" => "Rioja",
@@ -365,7 +365,7 @@ class StaticDataSeeder extends Seeder
                 "Descripcion" => "Cabernet chileno, frutos negros, menta y roble tostado con buen cuerpo",
                 "Cantidad" => 40,
                 "Categoria" => "Vinos",
-                "Subcategoria" => "Vino Tinto",
+                "Subcategoria" => "Tinto",
                 "Marca" => "Montes",
                 "Pais" => "Chile",
                 "Region" => "Valle de Colchagua",
@@ -401,7 +401,7 @@ class StaticDataSeeder extends Seeder
                 "Descripcion" => "Shiraz australiano accesible, frutos rojos y pimienta negra suave",
                 "Cantidad" => 10,
                 "Categoria" => "Vinos",
-                "Subcategoria" => "Vino Tinto",
+                "Subcategoria" => "Tinto",
                 "Marca" => "Penfolds",
                 "Pais" => "Australia",
                 "Region" => "South Australia",
@@ -419,7 +419,7 @@ class StaticDataSeeder extends Seeder
                 "Descripcion" => "Carmenere con notas de pimiento verde, frutas rojas y especias suaves",
                 "Cantidad" => 40,
                 "Categoria" => "Vinos",
-                "Subcategoria" => "Vino Tinto",
+                "Subcategoria" => "Tinto",
                 "Marca" => "Santa Carolina",
                 "Pais" => "Chile",
                 "Region" => "Valle Central",
@@ -437,7 +437,7 @@ class StaticDataSeeder extends Seeder
                 "Descripcion" => "Sauvignon Blanc fresco, hierba cortada, citricos y fruta tropical",
                 "Cantidad" => 50,
                 "Categoria" => "Vinos",
-                "Subcategoria" => "Vino Blanco",
+                "Subcategoria" => "Blanco",
                 "Marca" => "Santa Rita",
                 "Pais" => "Chile",
                 "Region" => "Valle de Casablanca",
@@ -455,7 +455,7 @@ class StaticDataSeeder extends Seeder
                 "Descripcion" => "Cabernet Sauvignon premium de Penedes, intenso con ciruela madura",
                 "Cantidad" => 100,
                 "Categoria" => "Vinos",
-                "Subcategoria" => "Vino Tinto",
+                "Subcategoria" => "Tinto",
                 "Marca" => "Torres",
                 "Pais" => "Espana",
                 "Region" => "Penedes",
@@ -473,7 +473,7 @@ class StaticDataSeeder extends Seeder
                 "Descripcion" => "Blend aromatico de Moscatel y Gewurztraminer, flores y tropicales",
                 "Cantidad" => 40,
                 "Categoria" => "Vinos",
-                "Subcategoria" => "Vino Blanco",
+                "Subcategoria" => "Blanco",
                 "Marca" => "Torres",
                 "Pais" => "Espana",
                 "Region" => "Penedes",
@@ -491,7 +491,7 @@ class StaticDataSeeder extends Seeder
                 "Descripcion" => "Rosado de Malbec, fresa, frambuesa y petalos de rosa, final fresco",
                 "Cantidad" => 10,
                 "Categoria" => "Vinos",
-                "Subcategoria" => "Vino Rosado",
+                "Subcategoria" => "Rosado",
                 "Marca" => "Trivento",
                 "Pais" => "Argentina",
                 "Region" => "Mendoza",
@@ -545,7 +545,7 @@ class StaticDataSeeder extends Seeder
                 "Descripcion" => "Malbec de altura con notas de frutos negros y toques florales",
                 "Cantidad" => 20,
                 "Categoria" => "Vinos",
-                "Subcategoria" => "Vino Tinto",
+                "Subcategoria" => "Tinto",
                 "Marca" => "Zuccardi",
                 "Pais" => "Argentina",
                 "Region" => "Valle de Uco",
@@ -560,12 +560,76 @@ class StaticDataSeeder extends Seeder
             ]
         ];
 
-        foreach ($data as $row) {
-            // 1. Categoria
-            $categoria = Categoria::firstOrCreate(
-                ['nombre' => $row['Categoria']],
-                ['descripcion' => $row['Subcategoria'] ?? null]
+        // Definición de categorías fijas (padres e hijas) a insertar primero
+        $categoriasFijas = [
+            'Vinos' => ['Tinto', 'Blanco', 'Rosado', 'Espumoso', 'Fortificado'],
+            'Destilados' => ['Whisky', 'Ron', 'Vodka', 'Tequila', 'Ginebra'],
+            'Cervezas' => ['Lager', 'IPA', 'Ale', 'Stout']
+        ];
+
+        // Insertar categorías fijas si no existen
+        foreach ($categoriasFijas as $padre => $subcategorias) {
+            $catPadre = Categoria::firstOrCreate(
+                ['nombre' => $padre],
+                ['nivel' => 1, 'descripcion' => 'Categoría principal de ' . strtolower($padre)]
             );
+
+            foreach ($subcategorias as $sub) {
+                Categoria::firstOrCreate(
+                    ['nombre' => $sub, 'nombre_padre' => $catPadre->id_categoria],
+                    ['nivel' => 2, 'descripcion' => 'Subcategoría de ' . strtolower($padre)]
+                );
+            }
+        }
+
+        // Mapeo de tipos de cepa/variedad
+        $tiposCepas = [
+            'Malbec' => 'Tinta',
+            'Cabernet Sauvignon' => 'Tinta',
+            'Merlot' => 'Tinta',
+            'Shiraz' => 'Tinta',
+            'Carmenere' => 'Tinta',
+            'Tempranillo' => 'Tinta',
+            'Pinot Noir' => 'Tinta',
+            'Chardonnay' => 'Blanca',
+            'Sauvignon Blanc' => 'Blanca',
+            'Torrontes' => 'Blanca',
+            'Macabeo' => 'Blanca',
+            'Parellada' => 'Blanca',
+            'Xarello' => 'Blanca',
+            'Riesling' => 'Blanca',
+            'Moscatel' => 'Aromatica',
+            'Gewurztraminer' => 'Aromatica',
+            'Meunier' => 'Tinta',
+            'Agave Azul' => 'Aromatica',
+            'Ron anejo' => 'Aromatica',
+            'Single Malt' => 'Aromatica',
+            'Blend de botanicos' => 'Aromatica',
+            'Blend' => 'Aromatica',
+        ];
+
+        foreach ($data as $row) {
+            // 1. Categoria Padre y Subcategoria
+            $categoriaPadre = Categoria::firstOrCreate(
+                ['nombre' => $row['Categoria']],
+                ['nivel' => 1, 'descripcion' => 'Categoría principal de ' . strtolower($row['Categoria'])]
+            );
+
+            $idCategoriaAsignar = $categoriaPadre->id_categoria;
+
+            if (isset($row['Subcategoria']) && !empty($row['Subcategoria'])) {
+                $subcategoria = Categoria::firstOrCreate(
+                    [
+                        'nombre' => $row['Subcategoria'],
+                        'nombre_padre' => $categoriaPadre->id_categoria
+                    ],
+                    [
+                        'nivel' => 2,
+                        'descripcion' => 'Subcategoría de ' . strtolower($categoriaPadre->nombre)
+                    ]
+                );
+                $idCategoriaAsignar = $subcategoria->id_categoria;
+            }
 
             // 2. Marca
             $marca = Marca::firstOrCreate(
@@ -577,7 +641,7 @@ class StaticDataSeeder extends Seeder
                 'nombre' => $row['Nombre'],
                 'descripcion' => $row['Descripcion'],
                 'cantidad' => $row['Cantidad'],
-                'id_categoria' => $categoria->id_categoria,
+                'id_categoria' => $idCategoriaAsignar,
                 'id_marca' => $marca->id_marca,
                 'pais' => $row['Pais'],
                 'region' => $row['Region'],
@@ -595,8 +659,12 @@ class StaticDataSeeder extends Seeder
             foreach ($cepas as $cepaNombre) {
                 $cepaNombre = trim($cepaNombre);
                 if (!empty($cepaNombre)) {
+                    // Obtener tipo del array mapeado, por defecto Blanca si no se encuentra
+                    $tipoAsignado = $tiposCepas[$cepaNombre] ?? 'Aromatica'; 
+                    
                     $variedad = Variedad::firstOrCreate(
-                        ['nombre' => $cepaNombre]
+                        ['nombre' => $cepaNombre],
+                        ['tipo' => $tipoAsignado, 'descripcion' => 'Variedad de tipo ' . $tipoAsignado]
                     );
                     $producto->variedades()->attach($variedad->id_variedad);
                 }
