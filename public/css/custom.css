@@ -882,6 +882,90 @@ body.admin-body {
     gap: 32px;
 }
 
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 32px;
+    margin-top: 40px;
+}
+
+.dashboard-card {
+    background-color: var(--surface-container-low);
+    padding: 40px 32px;
+    border-radius: 12px;
+    border: 1px solid rgba(218, 193, 191, 0.1);
+    box-shadow: 0 10px 30px rgba(42, 0, 2, 0.05);
+    text-align: center;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(42, 0, 2, 0.1);
+    border-color: var(--tertiary);
+}
+
+.dashboard-icon {
+    width: 80px;
+    height: 80px;
+    background-color: var(--surface-container-highest);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    color: var(--primary);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.dashboard-icon span {
+    font-size: 40px;
+}
+
+.dashboard-card:hover .dashboard-icon {
+    background-color: var(--primary);
+    color: var(--on-primary);
+}
+
+.dashboard-card h3 {
+    font-family: var(--font-headline);
+    font-size: 24px;
+    color: var(--primary);
+    margin: 0 0 12px 0;
+}
+
+.dashboard-card p {
+    font-size: 14px;
+    color: var(--on-surface-variant);
+    margin: 0 0 24px 0;
+    line-height: 1.5;
+}
+
+.dashboard-card .btn-manage {
+    padding: 10px 24px;
+    background-color: transparent;
+    color: var(--primary);
+    border: 1px solid var(--outline-variant);
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.2s;
+    width: 100%;
+}
+
+.dashboard-card:hover .btn-manage {
+    background-color: var(--primary);
+    color: var(--on-primary);
+    border-color: var(--primary);
+}
+
 .detail-card {
     background-color: var(--surface-container-low);
     padding: 24px;

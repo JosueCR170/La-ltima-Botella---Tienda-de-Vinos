@@ -25,7 +25,7 @@
                         <span class="material-symbols-outlined">person</span>
                     </div>
                     <div class="profile-info">
-                        <span class="profile-name">Sommelier Admin</span>
+                        <span class="profile-name">Admin</span>
                         <span class="profile-role">Panel de Control</span>
                     </div>
                 </div>
