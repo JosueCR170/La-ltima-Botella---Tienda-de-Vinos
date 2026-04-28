@@ -63,19 +63,79 @@
         </div>
         <!-- Íconos a la derecha -->
         <div class="w-1/3 flex justify-end items-center space-x-6">
-            <a href="{{ route('carrito.index') }}" class="relative group" title="Carrito">
+            <a href="{{ route('carrito.index') }}" class="relative group" title="Carrito" id="cart-link">
                 <span class="material-symbols-outlined text-[#2a0002] hover:opacity-80 active:scale-95 transition-all" data-icon="shopping_cart">shopping_cart</span>
                 @php $cartCount = count(session('carrito', [])); @endphp
-                @if($cartCount > 0)
-                <span class="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full font-bold shadow-sm group-hover:scale-110 transition-transform">
+                <span id="cart-count" class="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full font-bold shadow-sm group-hover:scale-110 transition-transform {{ $cartCount > 0 ? '' : 'hidden' }}">
                     {{ $cartCount }}
                 </span>
-                @endif
             </a>
             <a href="{{ route('admin.dashboard') }}" title="Panel de Administración" class="material-symbols-outlined text-[#2a0002] hover:opacity-80 active:scale-95 transition-all" data-icon="settings">settings</a>
             <button class="material-symbols-outlined text-[#2a0002] hover:opacity-80 active:scale-95 transition-all" title="Mi cuenta" data-icon="person">person</button>
         </div>
     </nav>
+
+    <!-- Notificaciones flotantes -->
+    <div id="notification-container" class="fixed bottom-10 right-10 z-[100] flex flex-col gap-4"></div>
+
+    <script>
+        function agregarAlCarrito(id) {
+            fetch(`/carrito/agregar/${id}`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if(data.success) {
+                    // Actualizar contador
+                    const cartCount = document.getElementById('cart-count');
+                    cartCount.innerText = data.count;
+                    cartCount.classList.remove('hidden');
+                    
+                    // Mostrar notificación
+                    showNotification(data.mensaje || 'Producto agregado correctamente');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showNotification('Error al agregar al carrito', 'error');
+            });
+        }
+
+        function showNotification(message, type = 'success') {
+            const container = document.getElementById('notification-container');
+            const notification = document.createElement('div');
+            notification.className = `p-4 rounded-lg shadow-2xl text-white font-label text-sm transform transition-all duration-500 translate-x-full ${type === 'success' ? 'bg-[#2a0002]' : 'bg-red-600'}`;
+            notification.innerHTML = `
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-sm">${type === 'success' ? 'check_circle' : 'error'}</span>
+                    <span>${message}</span>
+                </div>
+            `;
+            container.appendChild(notification);
+            
+            // Animar entrada
+            setTimeout(() => notification.classList.remove('translate-x-full'), 10);
+            
+            // Eliminar después de 3 segundos
+            setTimeout(() => {
+                notification.classList.add('opacity-0');
+                setTimeout(() => notification.remove(), 500);
+            }, 3000);
+        }
+    </script>
+
+    @if(session('success'))
+    <script>window.onload = () => showNotification("{{ session('success') }}", 'success');</script>
+    @endif
+
+    @if(session('error'))
+    <script>window.onload = () => showNotification("{{ session('error') }}", 'error');</script>
+    @endif
 
     <!-- Main Content -->
     @yield('content')

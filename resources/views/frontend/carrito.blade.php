@@ -27,10 +27,21 @@
                     <p class="text-tertiary font-label text-sm uppercase tracking-widest mt-1">${{ number_format($item['precio'], 2) }} por unidad</p>
                     
                     <div class="flex items-center gap-6 mt-4">
-                        <div class="flex items-center border border-outline-variant/30 rounded-md bg-white">
-                            <button class="px-3 py-1 text-primary hover:bg-surface-container transition-colors border-r border-outline-variant/30">-</button>
-                            <span class="px-4 py-1 font-bold text-sm">{{ $item['cantidad'] }}</span>
-                            <button class="px-3 py-1 text-primary hover:bg-surface-container transition-colors border-l border-outline-variant/30">+</button>
+                    <div class="flex items-center gap-6 mt-4">
+                        <div class="flex items-center border border-outline-variant/30 rounded-md bg-white overflow-hidden">
+                            <form action="{{ route('carrito.update', $id) }}" method="POST" class="flex items-center">
+                                @csrf
+                                <input type="hidden" name="accion" value="decrementar">
+                                <button type="submit" class="px-3 py-1 text-primary hover:bg-surface-container transition-colors border-r border-outline-variant/30 {{ $item['cantidad'] <= 1 ? 'opacity-30 pointer-events-none' : '' }}">-</button>
+                            </form>
+                            
+                            <span class="px-4 py-1 font-bold text-sm min-w-[3rem] text-center">{{ $item['cantidad'] }}</span>
+                            
+                            <form action="{{ route('carrito.update', $id) }}" method="POST" class="flex items-center">
+                                @csrf
+                                <input type="hidden" name="accion" value="incrementar">
+                                <button type="submit" class="px-3 py-1 text-primary hover:bg-surface-container transition-colors border-l border-outline-variant/30">+</button>
+                            </form>
                         </div>
                         <form action="{{ route('carrito.remove', $id) }}" method="POST">
                             @csrf
@@ -52,7 +63,7 @@
                 </a>
             </div>
         </div>
-
+ 
         <!-- Resumen -->
         <div class="lg:col-span-4">
             <div class="bg-primary p-8 rounded-lg text-white shadow-xl sticky top-32">
@@ -65,7 +76,7 @@
                     </div>
                     <div class="flex justify-between text-sm font-label uppercase tracking-widest opacity-80">
                         <span>Envío</span>
-                        <span class="italic">Calculado al checkout</span>
+                        <span class="italic">Gratis</span>
                     </div>
                 </div>
                 
@@ -74,9 +85,9 @@
                     <span class="font-headline text-4xl font-bold italic text-[#e4e4cc]">${{ number_format($total, 2) }}</span>
                 </div>
                 
-                <button class="w-full bg-[#e4e4cc] text-[#2a0002] py-4 rounded-md font-label font-bold uppercase tracking-[0.2em] hover:bg-white transition-all active:scale-95 shadow-lg">
+                <a href="{{ route('checkout.index') }}" class="w-full bg-[#e4e4cc] text-[#2a0002] py-4 rounded-md font-label font-bold uppercase tracking-[0.2em] hover:bg-white transition-all active:scale-95 shadow-lg block text-center">
                     Finalizar Pedido
-                </button>
+                </a>
                 
                 <p class="text-[10px] text-center mt-6 font-label uppercase tracking-widest opacity-40 leading-loose">
                     Precios incluyen impuestos locales.<br>Garantía de calidad de La Última Botella.

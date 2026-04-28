@@ -57,31 +57,40 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
                 @forelse($productosDestacados as $index => $producto)
-                <a href="{{ route('producto.show', $producto->id_producto) }}"
-                   class="group bg-surface p-8 rounded-md transition-all hover:shadow-2xl hover:-translate-y-2 block
+                <article class="group bg-surface p-8 rounded-md transition-all hover:shadow-2xl hover:-translate-y-2 block
                           {{ $index === 1 ? 'lg:translate-y-12' : '' }}">
-                    <div class="aspect-[3/4] mb-8 overflow-hidden rounded-sm bg-surface-container-low p-6 flex items-center justify-center">
-                        @if($producto->imagen_url)
-                            <img alt="{{ $producto->nombre }}"
-                                 class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700"
-                                 src="{{ $producto->imagen_url }}"/>
-                        @else
-                            <div class="w-full h-full flex items-center justify-center">
-                                <span class="material-symbols-outlined text-7xl text-outline-variant/30">wine_bar</span>
-                            </div>
-                        @endif
-                    </div>
-                    <span class="text-xs font-label text-stone-500 uppercase tracking-widest">
-                        {{ $producto->pais }}{{ $producto->region ? ', ' . $producto->region : '' }}{{ $producto->anio_cosecha ? ', ' . $producto->anio_cosecha : '' }}
-                    </span>
-                    <h3 class="text-xl serif text-primary mt-2 group-hover:text-tertiary transition-colors">{{ $producto->nombre }}</h3>
+                    <a href="{{ route('producto.show', $producto->id_producto) }}" class="block">
+                        <div class="aspect-[3/4] mb-8 overflow-hidden rounded-sm bg-surface-container-highest relative">
+                            @if($producto->imagen_url)
+                                <img alt="{{ $producto->nombre }}"
+                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 {{ $producto->cantidad <= 0 ? 'opacity-50 grayscale' : '' }}"
+                                     src="{{ $producto->imagen_url }}"/>
+                            @else
+                                <div class="w-full h-full flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-7xl text-outline-variant/30">wine_bar</span>
+                                </div>
+                            @endif
+
+                            @if($producto->cantidad <= 0)
+                                <div class="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-[2px]">
+                                    <span class="bg-white/90 text-primary px-4 py-2 rounded-full font-label text-[10px] uppercase tracking-[0.2em] font-bold shadow-xl border border-primary/10">Agotado</span>
+                                </div>
+                            @endif
+                        </div>
+                        <span class="text-xs font-label text-stone-500 uppercase tracking-widest">
+                            {{ $producto->pais }}{{ $producto->region ? ', ' . $producto->region : '' }}{{ $producto->anio_cosecha ? ', ' . $producto->anio_cosecha : '' }}
+                        </span>
+                        <h3 class="text-xl serif text-primary mt-2 group-hover:text-tertiary transition-colors">{{ $producto->nombre }}</h3>
+                    </a>
                     <div class="mt-4 flex justify-between items-center">
                         <span class="text-lg font-body text-secondary">${{ number_format($producto->precio, 2) }}</span>
-                        <div class="p-2 rounded-full hover:bg-surface-container-highest transition-colors">
-                            <span class="material-symbols-outlined text-primary">add_shopping_cart</span>
-                        </div>
+                        @if($producto->cantidad > 0)
+                        <button onclick="agregarAlCarrito({{ $producto->id_producto }})" class="p-2 rounded-full hover:bg-surface-container-highest transition-colors text-primary active:scale-90">
+                            <span class="material-symbols-outlined">add_shopping_cart</span>
+                        </button>
+                        @endif
                     </div>
-                </a>
+                </article>
                 @empty
                 <div class="col-span-3 text-center py-16 text-on-surface-variant font-body italic">
                     No hay productos disponibles en este momento.
@@ -103,36 +112,45 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
                 @foreach($productosDescuento as $producto)
-                <a href="{{ route('producto.show', $producto->id_producto) }}"
-                   class="group bg-surface p-8 rounded-md transition-all hover:shadow-2xl hover:-translate-y-2 block">
-                    <div class="aspect-[3/4] mb-8 overflow-hidden rounded-sm bg-surface-container-low p-6 flex items-center justify-center relative">
-                        @if($producto->imagen_url)
-                            <img alt="{{ $producto->nombre }}"
-                                 class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700"
-                                 src="{{ $producto->imagen_url }}"/>
-                        @else
-                            <div class="w-full h-full flex items-center justify-center">
-                                <span class="material-symbols-outlined text-7xl text-outline-variant/30">wine_bar</span>
+                <article class="group bg-surface p-8 rounded-md transition-all hover:shadow-2xl hover:-translate-y-2 block">
+                    <a href="{{ route('producto.show', $producto->id_producto) }}" class="block">
+                        <div class="aspect-[3/4] mb-8 overflow-hidden rounded-sm bg-surface-container-highest relative">
+                            @if($producto->imagen_url)
+                                <img alt="{{ $producto->nombre }}"
+                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 {{ $producto->cantidad <= 0 ? 'opacity-50 grayscale' : '' }}"
+                                     src="{{ $producto->imagen_url }}"/>
+                            @else
+                                <div class="w-full h-full flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-7xl text-outline-variant/30">wine_bar</span>
+                                </div>
+                            @endif
+                            <div class="absolute top-4 right-4 bg-red-600 text-white text-[10px] px-3 py-1 font-label uppercase tracking-widest rounded-full shadow-lg">
+                                -{{ $producto->descuento }}%
                             </div>
-                        @endif
-                        <div class="absolute top-4 right-4 bg-red-600 text-white text-[10px] px-3 py-1 font-label uppercase tracking-widest rounded-full shadow-lg">
-                            -{{ $producto->descuento }}%
+
+                            @if($producto->cantidad <= 0)
+                                <div class="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-[2px]">
+                                    <span class="bg-white/90 text-primary px-4 py-2 rounded-full font-label text-[10px] uppercase tracking-[0.2em] font-bold shadow-xl border border-primary/10">Agotado</span>
+                                </div>
+                            @endif
                         </div>
-                    </div>
-                    <span class="text-xs font-label text-stone-500 uppercase tracking-widest">
-                        {{ $producto->pais }}{{ $producto->region ? ', ' . $producto->region : '' }}
-                    </span>
-                    <h3 class="text-xl serif text-primary mt-2 group-hover:text-tertiary transition-colors">{{ $producto->nombre }}</h3>
+                        <span class="text-xs font-label text-stone-500 uppercase tracking-widest">
+                            {{ $producto->pais }}{{ $producto->region ? ', ' . $producto->region : '' }}
+                        </span>
+                        <h3 class="text-xl serif text-primary mt-2 group-hover:text-tertiary transition-colors">{{ $producto->nombre }}</h3>
+                    </a>
                     <div class="mt-4 flex justify-between items-center">
                         <div>
                             <span class="text-sm line-through text-on-surface/40">${{ number_format($producto->precio, 2) }}</span>
                             <span class="text-lg font-bold text-red-600 ml-2">${{ number_format($producto->precio * (1 - $producto->descuento/100), 2) }}</span>
                         </div>
-                        <div class="p-2 rounded-full hover:bg-surface-container-highest transition-colors">
-                            <span class="material-symbols-outlined text-primary">add_shopping_cart</span>
-                        </div>
+                        @if($producto->cantidad > 0)
+                        <button onclick="agregarAlCarrito({{ $producto->id_producto }})" class="p-2 rounded-full hover:bg-surface-container-highest transition-colors text-primary active:scale-90">
+                            <span class="material-symbols-outlined">add_shopping_cart</span>
+                        </button>
+                        @endif
                     </div>
-                </a>
+                </article>
                 @endforeach
             </div>
         </div>

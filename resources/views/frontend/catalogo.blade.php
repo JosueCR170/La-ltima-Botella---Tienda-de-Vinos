@@ -11,6 +11,21 @@
     </header>
 
     <form method="GET" action="{{ url('/catalogo') }}" id="formFiltros">
+        <!-- Búsqueda por nombre -->
+        <section class="space-y-4 mb-10">
+            <h3 class="font-headline text-lg italic border-b border-outline-variant/15 pb-2 flex items-center">
+                <span class="material-symbols-outlined text-sm mr-2 text-tertiary">search</span>
+                Buscar Vino
+            </h3>
+            <div class="relative">
+                <input type="text" name="buscar" value="{{ request('buscar') }}" 
+                       placeholder="Nombre del vino..."
+                       class="w-full bg-surface-container text-sm font-body text-on-surface border border-outline-variant/30 rounded-md px-4 py-3 focus:outline-none focus:border-primary transition-all pr-10">
+                <button type="submit" class="absolute right-3 top-1/2 -translate-y-1/2 text-primary/40 hover:text-primary transition-colors">
+                    <span class="material-symbols-outlined text-xl">arrow_forward</span>
+                </button>
+            </div>
+        </section>
 
         <!-- Categoría -->
         <section class="space-y-4 mb-8">
@@ -95,7 +110,7 @@
                 <button type="submit" name="variedad" value="{{ $variedad->id_variedad }}" form="formFiltros"
                     class="px-3 py-1 text-[10px] font-label rounded-full uppercase tracking-widest cursor-pointer transition-colors
                     {{ request('variedad') == $variedad->id_variedad
-                        ? 'bg-primary text-on-primary'
+                        ? 'bg-tertiary text-white shadow-md'
                         : 'bg-surface-container-high text-on-surface hover:bg-surface-container-highest' }}">
                     {{ $variedad->nombre }}
                 </button>
@@ -133,7 +148,7 @@
         </section>
 
         <!-- Limpiar filtros -->
-        @if(request()->hasAny(['categoria', 'marca', 'variedad', 'pais', 'orden', 'solo_descuentos']))
+        @if(request()->hasAny(['categoria', 'marca', 'variedad', 'pais', 'orden', 'solo_descuentos', 'buscar']))
         <a href="{{ url('/catalogo') }}" class="inline-flex items-center gap-2 text-xs font-label uppercase tracking-widest text-secondary hover:text-primary transition-colors">
             <span class="material-symbols-outlined text-sm">close</span> Limpiar filtros
         </a>
@@ -174,14 +189,22 @@
                             -{{ $producto->descuento }}%
                         </div>
                         @endif
+
+                        @if($producto->cantidad <= 0)
+                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-[2px]">
+                            <span class="bg-white/90 text-primary px-4 py-2 rounded-full font-label text-[10px] uppercase tracking-[0.2em] font-bold shadow-xl border border-primary/10">Agotado</span>
+                        </div>
+                        @endif
                     </div>
                 </a>
                 
                 <!-- Botón rápido agregar carrito -->
+                @if($producto->cantidad > 0)
                 <button onclick="agregarAlCarrito({{ $producto->id_producto }})" 
                         class="absolute bottom-4 right-4 bg-white/90 backdrop-blur-md p-3 rounded-full shadow-lg text-primary hover:bg-primary hover:text-white transition-all duration-300 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
                     <span class="material-symbols-outlined">add_shopping_cart</span>
                 </button>
+                @endif
             </div>
 
             <div class="space-y-1 mt-4">
@@ -263,29 +286,6 @@
 @endif
 </section>
 
-<script>
-    function agregarAlCarrito(id) {
-        fetch(`/carrito/agregar/${id}`, {
-            method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if(data.success) {
-                alert(data.mensaje);
-                // Opcional: Actualizar contador en el navbar
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Hubo un error al agregar el producto');
-        });
-    }
-</script>
 </section>
 
 </main>
