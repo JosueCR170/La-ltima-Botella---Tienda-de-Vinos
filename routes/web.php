@@ -20,6 +20,11 @@ Route::get('/producto/{id}', [\App\Http\Controllers\FrontendController::class, '
 Route::post('/carrito/agregar/{id}', [\App\Http\Controllers\FrontendController::class, 'agregarCarrito'])->name('carrito.add');
 Route::get('/carrito', [\App\Http\Controllers\FrontendController::class, 'carrito'])->name('carrito.index');
 Route::post('/carrito/eliminar/{id}', [\App\Http\Controllers\FrontendController::class, 'eliminarCarrito'])->name('carrito.remove');
+Route::post('/carrito/actualizar/{id}', [\App\Http\Controllers\FrontendController::class, 'actualizarCarrito'])->name('carrito.update');
+
+// Checkout routes
+Route::get('/checkout', [\App\Http\Controllers\FrontendController::class, 'checkout'])->name('checkout.index');
+Route::post('/checkout/pagar', [\App\Http\Controllers\FrontendController::class, 'procesarPago'])->name('checkout.pay');
 
 // Admin Routes
 Route::prefix('admin')->name('admin.')->group(function () {

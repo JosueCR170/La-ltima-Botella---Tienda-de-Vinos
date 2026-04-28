@@ -109,11 +109,18 @@
                         <p class="text-4xl font-headline font-bold text-primary">${{ number_format($producto->precio, 2) }}</p>
                     @endif
                 </div>
+                @if($producto->cantidad > 0)
                 <button onclick="agregarAlCarrito({{ $producto->id_producto }})" 
                         class="w-full sm:w-auto bg-[#2a0002] text-white px-8 py-4 rounded-md font-label text-sm font-bold uppercase tracking-widest hover:bg-[#3d0003] active:scale-95 transition-all duration-300 flex items-center justify-center space-x-3 shadow-lg">
                     <span class="material-symbols-outlined">add_shopping_cart</span>
                     <span>Agregar al Carrito</span>
                 </button>
+                @else
+                <div class="w-full sm:w-auto bg-stone-100 text-stone-400 px-8 py-4 rounded-md font-label text-sm font-bold uppercase tracking-widest flex items-center justify-center space-x-3 cursor-not-allowed border border-stone-200">
+                    <span class="material-symbols-outlined">block</span>
+                    <span>Producto Agotado</span>
+                </div>
+                @endif
             </section>
 
             <!-- Description -->
@@ -203,26 +210,4 @@
 </section>
 @endif
 
-<script>
-    function agregarAlCarrito(id) {
-        fetch(`/carrito/agregar/${id}`, {
-            method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if(data.success) {
-                alert(data.mensaje);
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Hubo un error al agregar el producto');
-        });
-    }
-</script>
 @endsection

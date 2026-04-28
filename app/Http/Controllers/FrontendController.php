@@ -35,6 +35,9 @@ class FrontendController extends Controller
             ->where('estado', true);
 
         // Filtros
+        if ($request->filled('buscar')) {
+            $query->where('nombre', 'LIKE', '%' . $request->buscar . '%');
+        }
         if ($request->filled('categoria')) {
             $query->where('id_categoria', $request->categoria);
         }
@@ -104,6 +107,11 @@ class FrontendController extends Controller
     public function agregarCarrito(Request $request, $id)
     {
         $producto = Producto::findOrFail($id);
+        
+        if($producto->cantidad <= 0) {
+            return response()->json(['success' => false, 'mensaje' => 'Lo sentimos, este producto está agotado.'], 400);
+        }
+
         $carrito = session()->get('carrito', []);
 
         if(isset($carrito[$id])) {
@@ -140,5 +148,56 @@ class FrontendController extends Controller
             session()->put('carrito', $carrito);
         }
         return redirect()->back()->with('success', 'Producto eliminado');
+    }
+
+    public function actualizarCarrito(Request $request, $id)
+    {
+        $carrito = session()->get('carrito', []);
+        $producto = Producto::find($id);
+
+        if(isset($carrito[$id]) && $producto) {
+            if($request->accion == 'incrementar') {
+                if($carrito[$id]['cantidad'] < $producto->cantidad) {
+                    $carrito[$id]['cantidad']++;
+                } else {
+                    return redirect()->back()->with('error', 'No hay más unidades disponibles de este producto.');
+                }
+            } elseif($request->accion == 'decrementar' && $carrito[$id]['cantidad'] > 1) {
+                $carrito[$id]['cantidad']--;
+            }
+            session()->put('carrito', $carrito);
+        }
+        return redirect()->back();
+    }
+
+    public function checkout()
+    {
+        $carrito = session()->get('carrito', []);
+        if(count($carrito) == 0) return redirect()->route('carrito.index');
+
+        $total = 0;
+        foreach($carrito as $item) {
+            $total += $item['precio'] * $item['cantidad'];
+        }
+
+        return view('frontend.checkout', compact('carrito', 'total'));
+    }
+
+    public function procesarPago()
+    {
+        $carrito = session()->get('carrito', []);
+        if(count($carrito) == 0) return redirect()->route('home');
+
+        foreach($carrito as $id => $item) {
+            $producto = Producto::find($id);
+            if($producto) {
+                $producto->cantidad -= $item['cantidad'];
+                if($producto->cantidad < 0) $producto->cantidad = 0;
+                $producto->save();
+            }
+        }
+
+        session()->forget('carrito');
+        return redirect()->route('home')->with('success', '¡Gracias por su compra! El pedido ha sido procesado correctamente.');
     }
 }
