@@ -36,8 +36,8 @@
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-y-16 gap-x-8">
             <!-- Fetching from DB in the future, for now static example from your mockup -->
             <article class="flex flex-col space-y-4 group">
-                <div class="aspect-[4/5] bg-surface-container overflow-hidden rounded-lg relative">
-                    <img alt="Red Wine" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzX7Qe2Aq9X8x8qqn-yc17CP5gc0sBn1pNV58Zxy_pVZjM0q5RGzghMyk-dWHKPrk-3H3fxRLh0408RzUq1yq9Qnbd_Bf5fN2uzPQTVGeaf7jN8ru2_1y2ODbjbDCQQbTGXjC2jeonHrpOr0k17TQ06amC0rIhKv0cGoTVGbgl-K_nF9ZCjnvi_b3jJSvscbRM0i-ETdtsgBHx86C8zXKMae-BrMVTxQ1bqia0OXWhAkQpjSq_uR0vsW1xTZsmzY1_9vrYvD2EW_e0"/>
+                <div class="aspect-[3/4] bg-surface-container-low overflow-hidden rounded-lg relative p-6 flex items-center justify-center">
+                    <img alt="Red Wine" class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzX7Qe2Aq9X8x8qqn-yc17CP5gc0sBn1pNV58Zxy_pVZjM0q5RGzghMyk-dWHKPrk-3H3fxRLh0408RzUq1yq9Qnbd_Bf5fN2uzPQTVGeaf7jN8ru2_1y2ODbjbDCQQbTGXjC2jeonHrpOr0k17TQ06amC0rIhKv0cGoTVGbgl-K_nF9ZCjnvi_b3jJSvscbRM0i-ETdtsgBHx86C8zXKMae-BrMVTxQ1bqia0OXWhAkQpjSq_uR0vsW1xTZsmzY1_9vrYvD2EW_e0"/>
                 </div>
                 <div class="space-y-1">
                     <h3 class="font-headline text-xl text-primary">Meridian Ridge Syrah</h3>
@@ -49,8 +49,8 @@
             </article>
 
             <article class="flex flex-col space-y-4 group">
-                <div class="aspect-[4/5] bg-surface-container overflow-hidden rounded-lg relative">
-                    <img alt="White Wine" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTQgjd7vBKXO2yZ-CTMU_-_SK49sWhkL-7miB8n8MqDtrzWPTPkjJ00PbsEHK3sK5n17UKXTmKpFSI_b1vkIc6YCSe-Il_Zz7KpeNimuwOiGqVlUuBdJz-vpY5IhGgV6iqdeOCBx8WUCGZ1-hk5RIi71KYEsnxl4q9WAXEXYhZMTngl63779LP3_Jk36Q1JiJwtZdAuPnnuz9f5ucBH0O9AwF9IGE_gDR4ev6fGMiCqsSVGJhwM9_ve4DYEUvHt4UFOmo0-pCXq2vn"/>
+                <div class="aspect-[3/4] bg-surface-container-low overflow-hidden rounded-lg relative p-6 flex items-center justify-center">
+                    <img alt="White Wine" class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTQgjd7vBKXO2yZ-CTMU_-_SK49sWhkL-7miB8n8MqDtrzWPTPkjJ00PbsEHK3sK5n17UKXTmKpFSI_b1vkIc6YCSe-Il_Zz7KpeNimuwOiGqVlUuBdJz-vpY5IhGgV6iqdeOCBx8WUCGZ1-hk5RIi71KYEsnxl4q9WAXEXYhZMTngl63779LP3_Jk36Q1JiJwtZdAuPnnuz9f5ucBH0O9AwF9IGE_gDR4ev6fGMiCqsSVGJhwM9_ve4DYEUvHt4UFOmo0-pCXq2vn"/>
                 </div>
                 <div class="space-y-1">
                     <h3 class="font-headline text-xl text-primary">Vidal Blanc 'L'Éclat'</h3>

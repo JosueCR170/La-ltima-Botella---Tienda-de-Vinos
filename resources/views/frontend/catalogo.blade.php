@@ -176,7 +176,7 @@
                     <div class="aspect-[3/4] bg-surface-container-low overflow-hidden rounded-lg relative p-6 flex items-center justify-center">
                         @if($producto->imagen_url)
                             <img alt="{{ $producto->nombre }}"
-                                 class="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-700"
+                                 class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700"
                                  src="{{ $producto->imagen_url }}"/>
                         @else
                             <div class="w-full h-full flex items-center justify-center">

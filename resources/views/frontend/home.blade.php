@@ -18,7 +18,7 @@
             </a>
         </div>
         <div class="lg:col-span-6 relative">
-            <div class="aspect-[3/4] bg-surface-container-low rounded-lg overflow-hidden shadow-xl transform lg:translate-x-12 lg:rotate-2 flex items-center justify-center p-8">
+            <div class="aspect-[3/4] bg-surface-container-low rounded-lg overflow-hidden shadow-xl transform lg:translate-x-12 lg:rotate-2 flex items-center justify-center p-6">
                 @if($productosDestacados->isNotEmpty() && $productosDestacados->first()->imagen_url)
                     <img alt="{{ $productosDestacados->first()->nombre }}" class="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-1000" src="{{ $productosDestacados->first()->imagen_url }}"/>
                 @else
@@ -60,17 +60,17 @@
                 <article class="group bg-surface p-8 rounded-md transition-all hover:shadow-2xl hover:-translate-y-2 block
                           {{ $index === 1 ? 'lg:translate-y-12' : '' }}">
                     <a href="{{ route('producto.show', $producto->id_producto) }}" class="block">
-                        <div class="aspect-[3/4] mb-8 overflow-hidden rounded-sm bg-surface-container-highest relative">
+                        <div class="aspect-[3/4] mb-8 overflow-hidden rounded-lg bg-surface-container-low relative p-6 flex items-center justify-center">
                             @if($producto->imagen_url)
                                 <img alt="{{ $producto->nombre }}"
-                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 {{ $producto->cantidad <= 0 ? 'opacity-50 grayscale' : '' }}"
+                                     class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700 {{ $producto->cantidad <= 0 ? 'opacity-50 grayscale' : '' }}"
                                      src="{{ $producto->imagen_url }}"/>
                             @else
                                 <div class="w-full h-full flex items-center justify-center">
                                     <span class="material-symbols-outlined text-7xl text-outline-variant/30">wine_bar</span>
                                 </div>
                             @endif
-
+                            
                             @if($producto->cantidad <= 0)
                                 <div class="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-[2px]">
                                     <span class="bg-white/90 text-primary px-4 py-2 rounded-full font-label text-[10px] uppercase tracking-[0.2em] font-bold shadow-xl border border-primary/10">Agotado</span>
@@ -114,10 +114,10 @@
                 @foreach($productosDescuento as $producto)
                 <article class="group bg-surface p-8 rounded-md transition-all hover:shadow-2xl hover:-translate-y-2 block">
                     <a href="{{ route('producto.show', $producto->id_producto) }}" class="block">
-                        <div class="aspect-[3/4] mb-8 overflow-hidden rounded-sm bg-surface-container-highest relative">
+                        <div class="aspect-[3/4] mb-8 overflow-hidden rounded-lg bg-surface-container-low relative p-6 flex items-center justify-center">
                             @if($producto->imagen_url)
                                 <img alt="{{ $producto->nombre }}"
-                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 {{ $producto->cantidad <= 0 ? 'opacity-50 grayscale' : '' }}"
+                                     class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700 {{ $producto->cantidad <= 0 ? 'opacity-50 grayscale' : '' }}"
                                      src="{{ $producto->imagen_url }}"/>
                             @else
                                 <div class="w-full h-full flex items-center justify-center">

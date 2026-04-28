@@ -191,9 +191,9 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
             @foreach($relacionados as $rel)
             <a href="{{ route('producto.show', $rel->id_producto) }}" class="group cursor-pointer block">
-                <div class="aspect-[3/4] bg-surface rounded-lg mb-6 overflow-hidden flex items-center justify-center p-8 transition-transform duration-500 group-hover:-translate-y-2">
+                <div class="aspect-[3/4] bg-surface-container-low rounded-lg mb-6 overflow-hidden flex items-center justify-center p-6 transition-all duration-500 group-hover:-translate-y-2">
                     @if($rel->imagen_url)
-                        <img alt="{{ $rel->nombre }}" class="h-full object-contain" src="{{ $rel->imagen_url }}"/>
+                        <img alt="{{ $rel->nombre }}" class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700" src="{{ $rel->imagen_url }}"/>
                     @else
                         <span class="material-symbols-outlined text-7xl text-outline-variant/30">wine_bar</span>
                     @endif
