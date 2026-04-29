@@ -1,8 +1,11 @@
 # La Última Botella - Tienda de Vinos
 
-**🔗 URL de Hosting:** [Agrega aquí tu enlace de hosting]
+**🔗 URL de Hosting:** [https://la-ltima-botella-tienda-de-vinos.onrender.com]
 
 ---
+Desarrolladores:
+- Josue Solórzano Ordóñez
+- Daniel González Picado
 
 ## Descripción del Proyecto
 "La Última Botella" es una aplicación web de comercio electrónico (E-commerce) desarrollada en Laravel para la gestión y venta de vinos, destilados y cervezas. El sistema permite administrar productos, categorías, marcas, variedades (cepas) y carritos de compras.
