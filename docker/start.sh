@@ -12,9 +12,11 @@ DB_DIR=$(dirname "$DB_PATH")
 echo ">>> Verificando directorio de base de datos: $DB_DIR"
 mkdir -p "$DB_DIR"
 
+# DESPUÉS
 echo ">>> Creando archivo SQLite si no existe..."
 touch "$DB_PATH"
-chown www-data:www-data "$DB_PATH"
+chown -R www-data:www-data "$DB_DIR"
+chmod -R 775 "$DB_DIR"
 chmod 664 "$DB_PATH"
 
 echo ">>> Corriendo migraciones..."
