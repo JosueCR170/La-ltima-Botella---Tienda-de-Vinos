@@ -84,12 +84,25 @@
         <!-- Main Content -->
         <main class="main-content">
             @if(session('success'))
+                @php
+                    $msg = session('success');
+                    if (str_contains($msg, 'cread')) {
+                        $alertTitle = 'Creación Exitosa';
+                    } elseif (str_contains($msg, 'eliminad')) {
+                        $alertTitle = 'Eliminación Exitosa';
+                    } else {
+                        $alertTitle = 'Actualización Exitosa';
+                    }
+                @endphp
                 <div class="alert-premium success">
                     <span class="material-symbols-outlined alert-icon">check_circle</span>
                     <div class="alert-content">
-                        <span class="alert-title">Actualización Exitosa</span>
-                        <span class="alert-message">{{ session('success') }}</span>
+                        <span class="alert-title">{{ $alertTitle }}</span>
+                        <span class="alert-message">{{ $msg }}</span>
                     </div>
+                    <button type="button" class="alert-close" onclick="this.parentElement.remove()">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
                 </div>
             @endif
 
@@ -104,6 +117,9 @@
                             @endforeach
                         </ul>
                     </div>
+                    <button type="button" class="alert-close" onclick="this.parentElement.remove()">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
                 </div>
             @endif
 

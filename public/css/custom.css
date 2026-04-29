@@ -475,7 +475,7 @@ body.admin-body {
 
 /* Premium Alert System */
 .alert-premium {
-    padding: 1.25rem 2rem;
+    padding: 1.25rem 2.5rem 1.25rem 2rem;
     border-radius: 12px;
     margin-bottom: 2rem;
     display: flex;
@@ -484,6 +484,31 @@ body.admin-body {
     border: 1px solid rgba(0, 0, 0, 0.05);
     box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
     animation: alertSlideDown 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+}
+
+.alert-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    opacity: 0.5;
+    padding: 0.25rem;
+    border-radius: 4px;
+    line-height: 1;
+    transition: opacity 0.2s, background-color 0.2s;
+}
+
+.alert-close:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.alert-close .material-symbols-outlined {
+    font-size: 18px;
 }
 
 .alert-premium.success {
