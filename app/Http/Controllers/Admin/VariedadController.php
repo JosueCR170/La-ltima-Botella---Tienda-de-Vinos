@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Variedad;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 class VariedadController extends Controller
 {
@@ -41,14 +42,28 @@ class VariedadController extends Controller
     {
         $request->validate([
             'nombre' => 'required|max:100|unique:variedades,nombre',
-            'tipo' => 'required',
+            'tipo' => 'required|in:Tinta,Blanca,Aromatica',
+            'descripcion' => 'nullable|max:500',
+        ], [
+            'nombre.required' => 'El nombre de la variedad es obligatorio.',
+            'nombre.max' => 'El nombre no puede exceder 100 caracteres.',
+            'nombre.unique' => 'Ya existe una variedad con ese nombre.',
+            'tipo.required' => 'El tipo de variedad es obligatorio.',
+            'tipo.in' => 'El tipo debe ser Tinta, Blanca o Aromática.',
+            'descripcion.max' => 'La descripción no puede exceder 500 caracteres.',
         ]);
 
-        Variedad::create($request->all());
-        return redirect()->route('admin.variedades.index')->with('success', 'Variedad creada con éxito.');
+        try {
+            Variedad::create($request->all());
+            return redirect()->route('admin.variedades.index')->with('success', 'Variedad creada con éxito.');
+        } catch (QueryException $e) {
+            return redirect()->back()->withInput()->withErrors(['db_error' => 'Error al guardar la variedad en la base de datos.']);
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput()->withErrors(['error' => 'Ocurrió un error inesperado al crear la variedad.']);
+        }
     }
 
-    public function edit(Variedad $variedade) // Note: Laravel uses 'variedade' as singular for 'variedades' resource
+    public function edit(Variedad $variedade)
     {
         $variedad = $variedade;
         return view('admin.variedades.edit', compact('variedad'));
@@ -59,16 +74,41 @@ class VariedadController extends Controller
         $variedad = $variedade;
         $request->validate([
             'nombre' => 'required|max:100|unique:variedades,nombre,' . $variedad->id_variedad . ',id_variedad',
-            'tipo' => 'required',
+            'tipo' => 'required|in:Tinta,Blanca,Aromatica',
+            'descripcion' => 'nullable|max:500',
+        ], [
+            'nombre.required' => 'El nombre de la variedad es obligatorio.',
+            'nombre.max' => 'El nombre no puede exceder 100 caracteres.',
+            'nombre.unique' => 'Ya existe otra variedad con ese nombre.',
+            'tipo.required' => 'El tipo de variedad es obligatorio.',
+            'tipo.in' => 'El tipo debe ser Tinta, Blanca o Aromática.',
+            'descripcion.max' => 'La descripción no puede exceder 500 caracteres.',
         ]);
 
-        $variedad->update($request->all());
-        return redirect()->route('admin.variedades.index')->with('success', 'Variedad actualizada con éxito.');
+        try {
+            $variedad->update($request->all());
+            return redirect()->route('admin.variedades.index')->with('success', 'Variedad actualizada con éxito.');
+        } catch (QueryException $e) {
+            return redirect()->back()->withInput()->withErrors(['db_error' => 'Error al actualizar la variedad.']);
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput()->withErrors(['error' => 'Ocurrió un error inesperado al actualizar la variedad.']);
+        }
     }
 
     public function destroy(Variedad $variedade)
     {
-        $variedade->delete();
-        return redirect()->route('admin.variedades.index')->with('success', 'Variedad eliminada con éxito.');
+        try {
+            $productos = $variedade->productos()->count();
+            if ($productos > 0) {
+                return redirect()->route('admin.variedades.index')->withErrors(['error' => 'No se puede eliminar "' . $variedade->nombre . '" porque tiene ' . $productos . ' producto(s) asociado(s).']);
+            }
+
+            $variedade->delete();
+            return redirect()->route('admin.variedades.index')->with('success', 'Variedad eliminada con éxito.');
+        } catch (QueryException $e) {
+            return redirect()->route('admin.variedades.index')->withErrors(['error' => 'No se puede eliminar esta variedad porque tiene registros dependientes.']);
+        } catch (\Exception $e) {
+            return redirect()->route('admin.variedades.index')->withErrors(['error' => 'Ocurrió un error inesperado al eliminar la variedad.']);
+        }
     }
 }

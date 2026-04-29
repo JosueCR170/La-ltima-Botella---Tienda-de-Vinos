@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Marca;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 use Monarobase\CountryList\CountryList;
 
 class MarcaController extends Controller
@@ -34,7 +35,6 @@ class MarcaController extends Controller
         }
 
         $marcas = $query->paginate(10)->withQueryString();
-
         $countries = new CountryList();
         $paises = $countries->getList('es');
 
@@ -52,11 +52,24 @@ class MarcaController extends Controller
     {
         $request->validate([
             'nombre' => 'required|max:100|unique:marcas,nombre',
-            'pais' => 'required',
+            'pais' => 'required|max:100',
+            'descripcion' => 'nullable|max:500',
+        ], [
+            'nombre.required' => 'El nombre de la marca es obligatorio.',
+            'nombre.max' => 'El nombre no puede exceder 100 caracteres.',
+            'nombre.unique' => 'Ya existe una marca con ese nombre.',
+            'pais.required' => 'El país de origen es obligatorio.',
+            'descripcion.max' => 'La descripción no puede exceder 500 caracteres.',
         ]);
 
-        Marca::create($request->all());
-        return redirect()->route('admin.marcas.index')->with('success', 'Marca creada con éxito.');
+        try {
+            Marca::create($request->all());
+            return redirect()->route('admin.marcas.index')->with('success', 'Marca creada con éxito.');
+        } catch (QueryException $e) {
+            return redirect()->back()->withInput()->withErrors(['db_error' => 'Error al guardar la marca en la base de datos.']);
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput()->withErrors(['error' => 'Ocurrió un error inesperado al crear la marca.']);
+        }
     }
 
     public function edit(Marca $marca)
@@ -70,16 +83,40 @@ class MarcaController extends Controller
     {
         $request->validate([
             'nombre' => 'required|max:100|unique:marcas,nombre,' . $marca->id_marca . ',id_marca',
-            'pais' => 'required',
+            'pais' => 'required|max:100',
+            'descripcion' => 'nullable|max:500',
+        ], [
+            'nombre.required' => 'El nombre de la marca es obligatorio.',
+            'nombre.max' => 'El nombre no puede exceder 100 caracteres.',
+            'nombre.unique' => 'Ya existe otra marca con ese nombre.',
+            'pais.required' => 'El país de origen es obligatorio.',
+            'descripcion.max' => 'La descripción no puede exceder 500 caracteres.',
         ]);
 
-        $marca->update($request->all());
-        return redirect()->route('admin.marcas.index')->with('success', 'Marca actualizada con éxito.');
+        try {
+            $marca->update($request->all());
+            return redirect()->route('admin.marcas.index')->with('success', 'Marca actualizada con éxito.');
+        } catch (QueryException $e) {
+            return redirect()->back()->withInput()->withErrors(['db_error' => 'Error al actualizar la marca.']);
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput()->withErrors(['error' => 'Ocurrió un error inesperado al actualizar la marca.']);
+        }
     }
 
     public function destroy(Marca $marca)
     {
-        $marca->delete();
-        return redirect()->route('admin.marcas.index')->with('success', 'Marca eliminada con éxito.');
+        try {
+            $productos = $marca->productos()->count();
+            if ($productos > 0) {
+                return redirect()->route('admin.marcas.index')->withErrors(['error' => 'No se puede eliminar "' . $marca->nombre . '" porque tiene ' . $productos . ' producto(s) asociado(s).']);
+            }
+
+            $marca->delete();
+            return redirect()->route('admin.marcas.index')->with('success', 'Marca eliminada con éxito.');
+        } catch (QueryException $e) {
+            return redirect()->route('admin.marcas.index')->withErrors(['error' => 'No se puede eliminar esta marca porque tiene registros dependientes.']);
+        } catch (\Exception $e) {
+            return redirect()->route('admin.marcas.index')->withErrors(['error' => 'Ocurrió un error inesperado al eliminar la marca.']);
+        }
     }
 }
